@@ -23,7 +23,7 @@ class NavigationBar extends Component {
   render() {
     return (
       <React.Fragment>
-        <nav className="navbar navbar-expand-lg navbar-light bg-dark">
+        <nav className="navbar navbar-expand-lg navbar-light">
           <a className="navbar-brand" href="./index.html">
             {this.state.logo}
           </a>

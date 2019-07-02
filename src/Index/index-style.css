@@ -1,0 +1,16 @@
+body,
+html {
+  width: 1500px;
+  margin: auto;
+  background-color: #06081f;
+}
+.navbar {
+  background-color: #1e2035;
+}
+.carousel,
+.carousel-inner {
+  height: 600px;
+}
+.carousel-item {
+  background-attachment: fixed;
+}
