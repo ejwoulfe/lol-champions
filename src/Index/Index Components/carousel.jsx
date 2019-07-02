@@ -9,46 +9,50 @@ class Carousel extends Component {
       <React.Fragment>
         <div
           id="carouselExampleIndicators"
-          class="carousel slide"
+          className="carousel slide"
           data-ride="carousel"
         >
-          <ol class="carousel-indicators">
+          <ol className="carousel-indicators">
             <li
               data-target="#carouselExampleIndicators"
               data-slide-to="0"
-              class="active"
+              className="active"
             />
             <li data-target="#carouselExampleIndicators" data-slide-to="1" />
             <li data-target="#carouselExampleIndicators" data-slide-to="2" />
           </ol>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img class="d-block w-100" src="..." alt="First slide" />
+          <div className="carousel-inner">
+            <div className="carousel-item active">
+              <img
+                className="d-block w-100"
+                src="\Aatrox_0.jpg"
+                alt="First slide"
+              />
             </div>
-            <div class="carousel-item">
-              <img class="d-block w-100" src="..." alt="Second slide" />
+            <div className="carousel-item">
+              <img className="d-block w-100" src="..." alt="Second slide" />
             </div>
-            <div class="carousel-item">
-              <img class="d-block w-100" src="..." alt="Third slide" />
+            <div className="carousel-item">
+              <img className="d-block w-100" src="..." alt="Third slide" />
             </div>
           </div>
           <a
-            class="carousel-control-prev"
+            className="carousel-control-prev"
             href="#carouselExampleIndicators"
             role="button"
             data-slide="prev"
           >
-            <span class="carousel-control-prev-icon" aria-hidden="true" />
-            <span class="sr-only">Previous</span>
+            <span className="carousel-control-prev-icon" aria-hidden="true" />
+            <span className="sr-only">Previous</span>
           </a>
           <a
-            class="carousel-control-next"
+            className="carousel-control-next"
             href="#carouselExampleIndicators"
             role="button"
             data-slide="next"
           >
-            <span class="carousel-control-next-icon" aria-hidden="true" />
-            <span class="sr-only">Next</span>
+            <span className="carousel-control-next-icon" aria-hidden="true" />
+            <span className="sr-only">Next</span>
           </a>
         </div>
       </React.Fragment>

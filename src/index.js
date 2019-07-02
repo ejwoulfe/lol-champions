@@ -6,7 +6,7 @@ import Carousel from "./Index/Index Components/carousel";
 import "bootstrap/dist/css/bootstrap.css";
 
 ReactDOM.render(<NavigationBar />, document.getElementById("nav"));
-ReactDOM.render(<Jumbotron />, document.getElementById("jumbotron_container"));
+ReactDOM.render(<Carousel />, document.getElementById("carousel_container"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

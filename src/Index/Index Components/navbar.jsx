@@ -11,7 +11,7 @@ class NavigationBar extends Component {
   renderLinkLists() {
     const links = this.state.links;
     const mapOfLinks = links.map(link => (
-      <li className="nav-item">
+      <li key={link.name} className="nav-item">
         <a className="nav-link" href={link.extension}>
           {link.name}
         </a>
