@@ -4,13 +4,40 @@ html {
   margin: auto;
   background-color: #06081f;
 }
+
 .navbar {
   background-color: #1e2035;
+  height: 80px;
+  width: 100%;
 }
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+}
+#overlay {
+  width: 100%;
+  height: 120px;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.45);
+  color: white;
+  bottom: 100px;
+  display: table;
+  z-index: 1;
+}
+#overlay h1 {
+  font-weight: bold;
+  height: 100%;
+  margin: 0;
+  padding-left: 150px;
+  vertical-align: middle; /*middle centred*/
+  display: table-cell;
+}
+#carousel_container,
 .carousel,
-.carousel-inner {
-  height: 600px;
-}
+.carousel-inner,
 .carousel-item {
-  background-attachment: fixed;
+  width: 100%;
+  height: 600px;
+  position: relative;
 }

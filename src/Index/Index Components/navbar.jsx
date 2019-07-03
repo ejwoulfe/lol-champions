@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Nav, Navbar, Form, Button, FormControl } from "react-bootstrap";
 
 class NavigationBar extends Component {
   state = {
@@ -11,11 +12,9 @@ class NavigationBar extends Component {
   renderLinkLists() {
     const links = this.state.links;
     const mapOfLinks = links.map(link => (
-      <li key={link.name} className="nav-item">
-        <a className="nav-link" href={link.extension}>
-          {link.name}
-        </a>
-      </li>
+      <Nav.Link key={link.name} className="nav-item" href={link.extension}>
+        {link.name}
+      </Nav.Link>
     ));
     return mapOfLinks;
   }
@@ -23,41 +22,24 @@ class NavigationBar extends Component {
   render() {
     return (
       <React.Fragment>
-        <nav className="navbar navbar-expand-lg navbar-light">
-          <a className="navbar-brand" href="./index.html">
+        <Navbar className="navbar navbar-expand-lg">
+          <Navbar.Brand className="navbar-brand col-sm-2" href="./index.html">
             {this.state.logo}
-          </a>
-          <form className="form-inline">
-            <input
-              className="form-control mr-sm-2"
-              type="search"
+          </Navbar.Brand>
+          <Form inline>
+            <FormControl
+              type="text"
               placeholder="Search for Champion"
-              aria-label="Search"
+              className=" mr-sm-2"
             />
-            <button
-              className="btn btn-outline-success my-2 my-sm-0"
-              type="submit"
-            >
-              Search
-            </button>
-          </form>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav ml-auto">{this.renderLinkLists()}</ul>
-            <button id="login_button">Login</button>
-            <button id="sign_up_button">Sign Up</button>
-          </div>
-        </nav>
+            <Button type="submit">Submit</Button>
+          </Form>
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <ul className="ml-auto">{this.renderLinkLists()}</ul>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
       </React.Fragment>
     );
   }
