@@ -1,18 +1,32 @@
 import React, { Component } from "react";
-import { Nav, Navbar, Form, Button, FormControl } from "react-bootstrap";
+import SearchBarCollapse from "../Index Components/Example";
+import {
+  Nav,
+  Navbar,
+  Form,
+  Button,
+  FormControl,
+  NavDropdown,
+  Container,
+  Collapse
+} from "react-bootstrap";
 
 class NavigationBar extends Component {
   state = {
     links: [
       { name: "Champions", extension: "/champions" },
-      { name: "Role Specific", extension: "/role_specific" }
+      { name: "By Tier", extension: "/by-tier" }
     ],
     logo: "LoL Champions"
   };
   renderLinkLists() {
     const links = this.state.links;
     const mapOfLinks = links.map(link => (
-      <Nav.Link key={link.name} className="nav-item" href={link.extension}>
+      <Nav.Link
+        key={link.name}
+        className="nav-item ml-auto"
+        href={link.extension}
+      >
         {link.name}
       </Nav.Link>
     ));
@@ -22,11 +36,22 @@ class NavigationBar extends Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar className="navbar navbar-expand-lg">
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+          <Navbar.Brand href="#home">{this.state.logo}</Navbar.Brand>
+
+          <SearchBarCollapse />
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="ml-auto">{this.renderLinkLists()}</Nav>
+          </Navbar.Collapse>
+        </Navbar>
+      </React.Fragment>
+
+      /* <Navbar className="navbar navbar-expand-lg">
           <Navbar.Brand className="navbar-brand col-sm-2" href="./index.html">
             {this.state.logo}
           </Navbar.Brand>
-          <Form inline>
+          <Form inline className="col-sm-6">
             <FormControl
               type="text"
               placeholder="Search for Champion"
@@ -35,12 +60,11 @@ class NavigationBar extends Component {
             <Button type="submit">Submit</Button>
           </Form>
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
+            <Nav className="mr-auto col-sm-4">
               <ul className="ml-auto">{this.renderLinkLists()}</ul>
             </Nav>
           </Navbar.Collapse>
-        </Navbar>
-      </React.Fragment>
+        </Navbar> */
     );
   }
 }

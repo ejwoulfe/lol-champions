@@ -4,8 +4,8 @@ import * as serviceWorker from "./serviceWorker";
 import NavigationBar from "./Index/Index Components/navbar";
 import ChampionCarousel from "./Index/Index Components/champion-carousel";
 import "bootstrap/dist/css/bootstrap.css";
-
-ReactDOM.render(<NavigationBar />, document.getElementById("nav"));
+import "./Index/index-style.css";
+ReactDOM.render(<NavigationBar />, document.getElementById("navigation"));
 ReactDOM.render(
   <ChampionCarousel />,
   document.getElementById("carousel_container")

@@ -29,34 +29,32 @@ class ChampionCarousel extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="row">
-          <div id="overlay">
-            <h1>Welcome to LoL Champions!</h1>
-          </div>
-          <Carousel>
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src={this.randomCarouselChampion()}
-                alt="First Slide"
-              />
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src={this.randomCarouselChampion()}
-                alt="Second Slide"
-              />
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src={this.randomCarouselChampion()}
-                alt="Third Slide"
-              />
-            </Carousel.Item>
-          </Carousel>
+        <div id="overlay">
+          <h1>Welcome to LoL Champions!</h1>
         </div>
+        <Carousel>
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src={this.randomCarouselChampion()}
+              alt="First Slide"
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src={this.randomCarouselChampion()}
+              alt="Second Slide"
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src={this.randomCarouselChampion()}
+              alt="Third Slide"
+            />
+          </Carousel.Item>
+        </Carousel>
       </React.Fragment>
     );
   }
