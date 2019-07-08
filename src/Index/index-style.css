@@ -10,8 +10,13 @@ html {
   min-height: 80px;
   width: 100%;
 }
-.form input {
+#search_bar,
+#search_bar input {
   width: 100%;
+}
+#search_container {
+  display: inline-flex;
+  margin: auto;
 }
 .nav-item {
   color: white;
@@ -20,12 +25,22 @@ html {
 }
 #search_bar_expand_button {
   display: none;
+  background-color: gray;
 }
-@media (max-width: 991px) {
+@media (max-width: 767px) {
   #search_bar_expand_button {
     display: block;
   }
+  #search_container #search_bar {
+    display: hide;
+  }
 }
+@media (max-width: 579px) {
+  #search_container {
+    width: 45%;
+  }
+}
+
 #overlay {
   width: 100%;
   max-height: 120px;
@@ -51,4 +66,6 @@ html {
   width: 100%;
   max-height: 600px;
   position: relative;
+}
+@media (max-width: 768px) {
 }

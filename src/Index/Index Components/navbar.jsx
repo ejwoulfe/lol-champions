@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SearchBarCollapse from "../Index Components/Example";
+import SearchBarCollapse from "./search-bar-collapse";
 import {
   Nav,
   Navbar,
@@ -36,14 +36,15 @@ class NavigationBar extends Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
           <Navbar.Brand href="#home">{this.state.logo}</Navbar.Brand>
-
           <SearchBarCollapse />
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="ml-auto">{this.renderLinkLists()}</Nav>
-          </Navbar.Collapse>
+          <div id="list_container" className="ml-auto">
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav">
+              <Nav className="ml-auto">{this.renderLinkLists()}</Nav>
+            </Navbar.Collapse>
+          </div>
         </Navbar>
       </React.Fragment>
 
