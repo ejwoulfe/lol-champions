@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
-import NavigationBar from "./Index/Index Components/navbar";
-import ChampionCarousel from "./Index/Index Components/champion-carousel";
+import NavigationBar from "./navigation-container";
+import ChampionCarousel from "./Index/champion-carousel";
+
 import "bootstrap/dist/css/bootstrap.css";
 import "./Index/index-style.css";
 ReactDOM.render(<NavigationBar />, document.getElementById("navigation"));
+
 ReactDOM.render(
   <ChampionCarousel />,
   document.getElementById("carousel_container")

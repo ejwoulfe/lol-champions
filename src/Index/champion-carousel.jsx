@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../index-style.css";
+import "../Index/index-style.css";
 import Carousel from "react-bootstrap/Carousel";
 
 class ChampionCarousel extends Component {
@@ -29,9 +29,9 @@ class ChampionCarousel extends Component {
   render() {
     return (
       <React.Fragment>
-        <div id="overlay">
+        {/* <div id="overlay">
           <h1>Welcome to LoL Champions!</h1>
-        </div>
+        </div> */}
         <Carousel>
           <Carousel.Item>
             <img
