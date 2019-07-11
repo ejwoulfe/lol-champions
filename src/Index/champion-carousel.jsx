@@ -16,7 +16,7 @@ class ChampionCarousel extends Component {
       "Ivern"
     ]
   };
-
+  //http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json
   randomCarouselChampion() {
     const number = Math.floor(Math.random() * 9);
     return (

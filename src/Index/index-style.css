@@ -25,6 +25,10 @@ html {
 #search_bar_input {
   background-color: #cfcfcf;
 }
+#search_bar_input {
+  height: 30px;
+  width: 80%;
+}
 #search_icon {
   margin-left: auto;
   margin-right: 10px;
