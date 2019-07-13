@@ -3,14 +3,7 @@ import LinksList from "./Navigation Components/links-list";
 import SearchBar from "./Navigation Components/search-bar";
 import Logo from "./Navigation Components/logo";
 
-import {
-  Nav,
-  Navbar,
-  Form,
-  Button,
-  FormControl,
-  ButtonGroup
-} from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 class NavigationBar extends Component {
   constructor() {
     super();

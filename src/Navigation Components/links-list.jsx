@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Navbar, Col, Nav } from "react-bootstrap";
-import { championFetch } from "../Index/fetch";
 
 class LinksList extends Component {
   render() {
@@ -10,8 +9,7 @@ class LinksList extends Component {
       <Nav.Link
         key={link.name}
         className="nav-item ml-auto"
-        // href={link.extension}
-        onClick={championFetch()}
+        href={link.extension}
       >
         {link.name}
       </Nav.Link>
