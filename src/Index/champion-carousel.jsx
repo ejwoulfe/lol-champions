@@ -3,55 +3,92 @@ import "../Index/index-style.css";
 import Carousel from "react-bootstrap/Carousel";
 
 class ChampionCarousel extends Component {
-  state = {
-    randomChampion: [
-      "Aatrox",
-      "Akali",
-      "Kayle",
-      "Warwick",
-      "Darius",
-      "Caitlyn",
-      "Ezreal",
-      "Camille",
-      "Ivern"
-    ]
-  };
-
-  randomCarouselChampion() {
-    const number = Math.floor(Math.random() * 9);
-    return (
-      "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" +
-      this.state.randomChampion[number] +
-      "_0.jpg"
-    );
+  constructor() {
+    super();
+    this.state = {
+      championObjects: [],
+      chosenNumbers: [],
+      chosenChampions: [],
+      isLoading: false
+    };
   }
+  componentDidMount() {
+    this.setState({ isLoading: true });
+    fetch(
+      "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
+    )
+      .then(res => res.json())
+      .then(
+        result => {
+          const totalNumber = 143;
 
+          for (var champ in result.data) {
+            var champObject = eval("result.data." + champ + ".id");
+
+            this.setState({
+              championObjects: [...this.state.championObjects, champObject]
+            });
+          }
+          // let chosenChampions = [];
+          // let chosenNumbers = [];
+
+          for (var i = 0; i < 3; i++) {
+            let randomNumber = Math.floor(Math.random() * totalNumber);
+            while (this.state.chosenNumbers.includes(randomNumber)) {
+              randomNumber = Math.floor(Math.random() * totalNumber);
+            }
+
+            this.setState({
+              chosenChampions: [
+                ...this.state.chosenChampions,
+                "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" +
+                  this.state.championObjects[randomNumber] +
+                  "_0.jpg"
+              ],
+              chosenNumbers: [...this.state.chosenNumbers, randomNumber],
+              isLoading: false
+            });
+          }
+        },
+
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        error => {
+          alert("Error");
+        }
+      );
+  }
   render() {
+    const isLoading = this.state.isLoading;
+    if (isLoading) {
+      return <p>Loading ...</p>;
+    }
     return (
       <React.Fragment>
-        {/* <div id="overlay">
+        <div id="overlay">
           <h1>Welcome to LoL Champions!</h1>
-        </div> */}
+        </div>
         <Carousel>
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src={this.randomCarouselChampion()}
-              alt="First Slide"
+              src={this.state.chosenChampions[0]}
+              alt="Test Slide"
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src={this.randomCarouselChampion()}
-              alt="Second Slide"
+              src={this.state.chosenChampions[1]}
+              alt="Test Slide"
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src={this.randomCarouselChampion()}
-              alt="Third Slide"
+              src={this.state.chosenChampions[2]}
+              alt="Test Slide"
             />
           </Carousel.Item>
         </Carousel>

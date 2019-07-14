@@ -2,13 +2,18 @@ body,
 html {
   max-width: 1300px;
   margin: auto;
-  background-color: #06081f;
+  background-color: #06081f !important;
 }
-
+hr {
+  background-color: white;
+}
 .navbar {
-  background-color: #1e2035;
   min-height: 80px;
   width: 100%;
+}
+#navigation {
+  background-color: #1e2035;
+  border-radius: 5px;
 }
 
 #search_container {
@@ -24,6 +29,10 @@ html {
 #bar_and_icon,
 #search_bar_input {
   background-color: #cfcfcf;
+}
+#search_bar_input {
+  height: 30px;
+  width: 80%;
 }
 #search_icon {
   margin-left: auto;
@@ -46,21 +55,23 @@ html {
 
 #overlay {
   width: 100%;
-  max-height: 120px;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.45);
   color: white;
   bottom: 100px;
   display: table;
   z-index: 1;
+  height: 105px;
+  transition: height 0.5s;
 }
 #overlay h1 {
   font-weight: bold;
   height: 100%;
   margin: 0;
-  padding-left: 150px;
+  padding-left: 60px;
   vertical-align: middle; /*middle centred*/
   display: table-cell;
+  transition: font-size 0.5s;
 }
 #carousel_container,
 .carousel,
@@ -69,6 +80,17 @@ html {
   width: 100%;
   max-height: 600px;
   position: relative;
+}
+#carousel_container {
+  margin-top: 15px;
+}
+@media (min-width: 992px) {
+  #overlay {
+    height: 140px;
+  }
+  #overlay h1 {
+    font-size: 44px;
+  }
 }
 /*  Medium Devices */
 @media (max-width: 767px) {
@@ -83,6 +105,13 @@ html {
   .navbar-collapse {
     margin-top: 20px;
   }
+  #overlay {
+    height: 80px;
+    bottom: 80px;
+  }
+  #overlay h1 {
+    font-size: 30px;
+  }
 }
 /* Small Devices */
 @media (max-width: 576px) {
@@ -91,5 +120,12 @@ html {
   }
   #links_container {
     margin-right: 40px;
+  }
+  #overlay h1 {
+    font-size: 24px;
+  }
+  #overlay {
+    height: 70px;
+    bottom: 60px;
   }
 }

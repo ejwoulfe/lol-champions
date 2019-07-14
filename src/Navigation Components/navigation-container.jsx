@@ -1,16 +1,9 @@
 import React, { Component } from "react";
-import LinksList from "./Navigation Components/links-list";
-import SearchBar from "./Navigation Components/search-bar";
-import Logo from "./Navigation Components/logo";
+import LinksList from "./links-list";
+import SearchBar from "./search-bar";
+import Logo from "./logo";
 
-import {
-  Nav,
-  Navbar,
-  Form,
-  Button,
-  FormControl,
-  ButtonGroup
-} from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 class NavigationBar extends Component {
   constructor() {
     super();
@@ -26,7 +19,7 @@ class NavigationBar extends Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
+        <Navbar collapseOnSelect expand="md" variant="dark">
           <Logo logo={this.state.logo} />
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
