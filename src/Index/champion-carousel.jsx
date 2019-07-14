@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "../Index/index-style.css";
 import Carousel from "react-bootstrap/Carousel";
-import { fetchChampionInfo } from "../fetchChampionInfo";
 
 class ChampionCarousel extends Component {
   constructor() {
@@ -9,10 +8,12 @@ class ChampionCarousel extends Component {
     this.state = {
       championObjects: [],
       chosenNumbers: [],
-      chosenChampions: []
+      chosenChampions: [],
+      isLoading: false
     };
   }
   componentDidMount() {
+    this.setState({ isLoading: true });
     fetch(
       "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
     )
@@ -22,12 +23,10 @@ class ChampionCarousel extends Component {
           const totalNumber = 143;
 
           for (var champ in result.data) {
-            var champObject = "result.data." + champ + ".name";
+            var champObject = eval("result.data." + champ + ".id");
+
             this.setState({
-              championObjects: [
-                ...this.state.championObjects,
-                eval(champObject)
-              ]
+              championObjects: [...this.state.championObjects, champObject]
             });
           }
           // let chosenChampions = [];
@@ -35,7 +34,6 @@ class ChampionCarousel extends Component {
 
           for (var i = 0; i < 3; i++) {
             let randomNumber = Math.floor(Math.random() * totalNumber);
-            console.log(randomNumber);
             while (this.state.chosenNumbers.includes(randomNumber)) {
               randomNumber = Math.floor(Math.random() * totalNumber);
             }
@@ -47,7 +45,8 @@ class ChampionCarousel extends Component {
                   this.state.championObjects[randomNumber] +
                   "_0.jpg"
               ],
-              chosenNumbers: [...this.state.chosenNumbers, randomNumber]
+              chosenNumbers: [...this.state.chosenNumbers, randomNumber],
+              isLoading: false
             });
           }
         },
@@ -61,32 +60,35 @@ class ChampionCarousel extends Component {
       );
   }
   render() {
+    const isLoading = this.state.isLoading;
+    if (isLoading) {
+      return <p>Loading ...</p>;
+    }
     return (
       <React.Fragment>
-        {/* <div id="overlay">
+        <div id="overlay">
           <h1>Welcome to LoL Champions!</h1>
-        </div> */}
-        <p>{this.state.test}</p>
+        </div>
         <Carousel>
           <Carousel.Item>
             <img
               className="d-block w-100"
-              // src={}
-              alt="First Slide"
+              src={this.state.chosenChampions[0]}
+              alt="Test Slide"
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
               className="d-block w-100"
-              //src={this.randomCarouselChampion()}
-              alt="Second Slide"
+              src={this.state.chosenChampions[1]}
+              alt="Test Slide"
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
               className="d-block w-100"
-              //src={this.randomCarouselChampion()}
-              alt="Third Slide"
+              src={this.state.chosenChampions[2]}
+              alt="Test Slide"
             />
           </Carousel.Item>
         </Carousel>

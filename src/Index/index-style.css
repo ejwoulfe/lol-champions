@@ -50,7 +50,7 @@ html {
 
 #overlay {
   width: 100%;
-  max-height: 120px;
+  min-height: 80%;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.45);
   color: white;
