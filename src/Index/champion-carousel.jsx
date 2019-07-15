@@ -22,15 +22,13 @@ class ChampionCarousel extends Component {
         result => {
           const totalNumber = 143;
 
-          for (var champ in result.data) {
-            var champObject = eval("result.data." + champ + ".id");
+          for (var champion in result.data) {
+            var champObject = eval("result.data." + champion + ".id");
 
             this.setState({
               championObjects: [...this.state.championObjects, champObject]
             });
           }
-          // let chosenChampions = [];
-          // let chosenNumbers = [];
 
           for (var i = 0; i < 3; i++) {
             let randomNumber = Math.floor(Math.random() * totalNumber);
