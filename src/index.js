@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 import NavigationBar from "./Navigation Components/navigation-container";
-import ChampionCarousel from "./Index/champion-carousel";
+import ChampionCarousel from "./Index/Jumbotron Carousel/champion-carousel";
 import FreeChampions from "./Index/Free Champions Components/free-champions";
 
 import "bootstrap/dist/css/bootstrap.css";

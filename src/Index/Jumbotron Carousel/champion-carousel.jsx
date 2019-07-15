@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../Index/index-style.css";
+import "./champion-carousel.scss";
 import Carousel from "react-bootstrap/Carousel";
 
 class ChampionCarousel extends Component {

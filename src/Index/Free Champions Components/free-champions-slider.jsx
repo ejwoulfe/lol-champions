@@ -1,8 +1,8 @@
 import React, { Component } from "react";
+import "./free-champions.scss";
 
 class FreeChampionsSlider extends Component {
   render() {
-    const handleOnDragStart = e => e.preventDefault();
     let freeChampions = this.props.data.map(champion => (
       <div key={champion.id} className="item">
         {champion.name} {champion.title}

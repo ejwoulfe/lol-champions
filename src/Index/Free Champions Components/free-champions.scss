@@ -1,0 +1,9 @@
+#free_champions_container {
+  ul {
+    display: inline-flex;
+    .item {
+      background-color: white;
+      margin-right: 10px;
+    }
+  }
+}
