@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { fetchChampionInfo } from "../fetchChampionInfo";
+import FreeChampionsSlider from "../Free Champions Components/free-champions-slider";
 
 class FreeChampions extends Component {
   constructor() {
@@ -39,14 +39,12 @@ class FreeChampions extends Component {
             freeChampionIds: result1.freeChampionIds
           });
 
-          let tempArr = this.state.freeChampionIds;
+          let tempArr = [...this.state.freeChampionIds];
 
           for (var champion in result2.data) {
             let championObject = eval("result2.data." + champion);
             let currentKey = Number(championObject.key);
             let keyIndex = tempArr.indexOf(currentKey);
-
-            //console.log("Current Champion Key: " + champion.key);
 
             if (tempArr.includes(currentKey)) {
               this.setState({
@@ -63,14 +61,11 @@ class FreeChampions extends Component {
               break;
             }
           }
-          console.log(this.state.championsObjectArray);
         }
         // error => {
         //   alert("Error");
         // }
       );
-
-    // console.log(this.state.freeChampionIds);
 
     // Note: it's important to handle errors here
     // instead of a catch() block so that we don't swallow
@@ -85,14 +80,9 @@ class FreeChampions extends Component {
   }
 
   render() {
-    let freeChampions = this.state.championsObjectArray.map(el => (
-      <li>
-        {el.name} {el.title}
-      </li>
-    ));
     return (
       <React.Fragment>
-        <ul>{freeChampions}</ul>
+        <FreeChampionsSlider data={this.state.championsObjectArray} />
       </React.Fragment>
     );
   }

@@ -84,6 +84,9 @@ hr {
 #carousel_container {
   margin-top: 15px;
 }
+#free_champions_container ul {
+  display: inline-flex;
+}
 @media (min-width: 992px) {
   #overlay {
     height: 140px;

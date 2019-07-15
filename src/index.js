@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 import NavigationBar from "./Navigation Components/navigation-container";
 import ChampionCarousel from "./Index/champion-carousel";
-import FreeChampions from "./Index/free-champions";
+import FreeChampions from "./Index/Free Champions Components/free-champions";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "./Index/index-style.css";
