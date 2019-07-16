@@ -1,6 +1,11 @@
+@import "../styles/variables.scss";
 #navigation {
   background-color: #1e2035;
   border-radius: 5px;
+  a {
+    font-family: $titleFont;
+    color: $titleColor;
+  }
 }
 
 .navbar {
@@ -31,7 +36,7 @@
   align-items: center;
 
   .nav-item {
-    color: white;
+    color: $titleColor;
     text-decoration: none;
     padding: 0px 5px 0px 5px;
     text-transform: capitalize;

@@ -9,10 +9,11 @@ class FreeChampions extends Component {
       championsObjectArray: []
     };
   }
+
   componentDidMount() {
     this.setState({ isLoading: true });
 
-    const key = "RGAPI-d93343ca-83fb-4cab-a2df-ce170cba6763";
+    const key = "RGAPI-e4112833-876a-486c-a208-7f485214a169";
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
     // fetch(
     //   proxyurl +

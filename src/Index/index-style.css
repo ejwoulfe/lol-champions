@@ -7,7 +7,14 @@ html {
 hr {
   background-color: white;
 }
-
+#by_tier_container {
+  height: 200px;
+}
 /*  Medium Devices */
 
 /* Small Devices */
+/* // font-family: 'Fredoka One', cursive;
+// font-family: 'Merriweather', serif;
+// font-family: 'PT Serif', serif;
+// font-family: 'Patua One', cursive;
+// font-family: 'Laila', serif; */

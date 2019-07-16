@@ -4,6 +4,7 @@ import * as serviceWorker from "./serviceWorker";
 import NavigationBar from "./Navigation Components/navigation-container";
 import ChampionCarousel from "./Index/Jumbotron Carousel/champion-carousel";
 import FreeChampions from "./Index/Free Champions Components/free-champions";
+import ByTier from "./Index/By Tier Components/by-tier";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "./Index/index-style.css";
@@ -17,6 +18,7 @@ ReactDOM.render(
   <FreeChampions />,
   document.getElementById("free_champions_container")
 );
+ReactDOM.render(<ByTier />, document.getElementById("by_tier_container"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
