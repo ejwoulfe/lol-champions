@@ -1,0 +1,50 @@
+@import "../../styles/variables.scss";
+
+#free_champions_container {
+  margin-top: 20px;
+  h5 {
+    color: $titleColor;
+    font-weight: bold;
+    font-family: $titleFont;
+  }
+  hr {
+    height: 1.5px;
+    opacity: 0.25;
+    border: 0px;
+    background-image: linear-gradient(95deg, #1affff, transparent);
+  }
+}
+.slick-track {
+  padding-top: 20px;
+}
+.slick-slide {
+  max-height: 400px;
+  padding: 10px;
+  transition: transform 0.5s;
+  &:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+  .card {
+    max-height: 400px;
+    opacity: 0.7;
+    &:hover {
+      opacity: 1;
+    }
+
+    img {
+      max-height: 300px;
+      object-fit: contain;
+    }
+    h4 {
+      font-family: "Laila", serif;
+      position: absolute;
+      bottom: 10px;
+      color: $titleColor;
+      font-weight: bold;
+      width: 100%;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+  }
+}

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LinksList from "./links-list";
 import SearchBar from "./search-bar";
 import Logo from "./logo";
+import "./navigation.scss";
 
 import { Navbar } from "react-bootstrap";
 class NavigationBar extends Component {
