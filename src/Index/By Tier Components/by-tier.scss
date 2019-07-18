@@ -1,10 +1,11 @@
 @import "../../styles/variables.scss";
 #by_tier_container {
   margin-top: 50px;
+  min-height: 1200px;
   h5 {
     color: $titleColor;
     font-weight: bold;
-    font-family: "Exo", sans-serif;
+    font-family: $secondaryTitleFont;
     font-size: 24px;
   }
   hr {

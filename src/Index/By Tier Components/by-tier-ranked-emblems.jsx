@@ -15,10 +15,7 @@ import Challenger from "../../Assets/Ranked Icons/Emblem_Challenger.png";
 
 //import FreeChampionsSlider from "../Free Champions Components/free-champions-slider";
 
-class ByTier extends Component {
-  constructor(props) {
-    super(props);
-  }
+class ByTierRankedEmblems extends Component {
   render() {
     let arr = [
       { color: "#A9A5A4" },
@@ -37,57 +34,93 @@ class ByTier extends Component {
     // let ironStyle = {
     //   boxShadow: "6px 4px #A9A5A4"
     // };
-
     return (
       <React.Fragment>
-        <h5>By Tier</h5>
-        <hr />
+      
+          <h5>By Tier</h5>
+          <hr />
         <Container>
           <Row>
             <Col xs={3} onClick={this.props.handler}>
-              <img src={Iron} />
+              <img
+                className="ranked_emblem"
+                src={Iron}
+                alt="Iron Ranked Emblem"
+              />
               <h5 style={arr[0]}>Iron</h5>
             </Col>
             <Col xs={1} />
             <Col xs={3}>
-              <img src={Bronze} />
+              <img
+                className="ranked_emblem"
+                src={Bronze}
+                alt="Bronze Ranked Emblem"
+              />
               <h5 style={arr[1]}>Bronze</h5>
             </Col>
             <Col xs={1} />
             <Col xs={3}>
-              <img src={Silver} />
+              <img
+                className="ranked_emblem"
+                src={Silver}
+                alt="Silver Ranked Emblem"
+              />
               <h5 style={arr[2]}>Silver</h5>
             </Col>
           </Row>
           <Row>
             <Col xs={3}>
-              <img src={Gold} />
+              <img
+                className="ranked_emblem"
+                src={Gold}
+                alt="Gold Ranked Emblem"
+              />
               <h5 style={arr[3]}>Gold</h5>
             </Col>
             <Col xs={1} />
             <Col xs={3}>
-              <img src={Platinum} />
+              <img
+                className="ranked_emblem"
+                src={Platinum}
+                alt="Platinum Ranked Emblem"
+              />
               <h5 style={arr[4]}>Platinum</h5>
             </Col>
             <Col xs={1} />
             <Col xs={3}>
-              <img src={Diamond} />
+              <img
+                className="ranked_emblem"
+                src={Diamond}
+                alt="Diamond Ranked Emblem"
+              />
               <h5 style={arr[5]}>Diamond</h5>
             </Col>
           </Row>
           <Row>
             <Col xs={3}>
-              <img src={Master} />
+              <img
+                className="ranked_emblem"
+                src={Master}
+                alt="Master Ranked Emblem"
+              />
               <h5 style={arr[6]}>Master</h5>
             </Col>
             <Col xs={1} />
             <Col xs={3}>
-              <img src={Grandmaster} />
+              <img
+                className="ranked_emblem"
+                src={Grandmaster}
+                alt="Grandmaster Ranked Emblem"
+              />
               <h5 style={arr[7]}>Grandmaster</h5>
             </Col>
             <Col xs={1} />
             <Col xs={3}>
-              <img src={Challenger} />
+              <img
+                className="ranked_emblem"
+                src={Challenger}
+                alt="Challenger Ranked Emblem"
+              />
               <h5 style={arr[8]}>Challenger</h5>
             </Col>
           </Row>
@@ -97,4 +130,4 @@ class ByTier extends Component {
   }
 }
 
-export default ByTier;
+export default ByTierRankedEmblems;

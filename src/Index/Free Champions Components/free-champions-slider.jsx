@@ -26,7 +26,7 @@ class FreeChampionsSlider extends Component {
             "_0.jpg"
           }
         />
-        <h4>{champion.id}</h4>
+        <h4>{champion.name}</h4>
       </Card>
     ));
     return (

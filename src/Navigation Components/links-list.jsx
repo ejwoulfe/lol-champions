@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Navbar, Col, Nav } from "react-bootstrap";
+import { Col, Nav } from "react-bootstrap";
 
 class LinksList extends Component {
   render() {
