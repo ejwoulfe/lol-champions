@@ -27,11 +27,15 @@
 
 .row {
   padding-bottom: 20px;
-  .col-3 {
-    border-radius: 10px;
+  .ranked_emblem {
+    &:hover {
+      cursor: pointer;
+    }
   }
   img {
-    max-width: 100%;
+    margin: auto;
+    display: block;
+    max-width: 75%;
   }
   h5 {
     text-align: center;
