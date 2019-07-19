@@ -14,7 +14,7 @@ class FreeChampions extends Component {
   componentDidMount() {
     this.setState({ isLoading: true });
 
-    const key = "RGAPI-39fff36b-21f9-4422-a5ac-afa7fabc94ee";
+    c94ee";
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
     // fetch(
     //   proxyurl +
