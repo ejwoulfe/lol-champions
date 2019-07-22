@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import FreeChampionsSlider from "../Free Champions Components/free-champions-slider";
+import { key, proxyurl } from "../../variables";
 
 class FreeChampions extends Component {
   constructor() {
@@ -14,12 +15,6 @@ class FreeChampions extends Component {
   componentDidMount() {
     this.setState({ isLoading: true });
 
-    const key = "RGAPI-e61ce34d-51af-41fc-96db-b59a7282c8e3";
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    // fetch(
-    //   proxyurl +
-    //     "https://na1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=RGAPI-d93343ca-83fb-4cab-a2df-ce170cba6763"
-    // )
     Promise.all([
       fetch(
         proxyurl +

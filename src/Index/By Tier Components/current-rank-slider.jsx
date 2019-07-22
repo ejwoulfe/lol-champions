@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
+import { key, proxyurl } from "../../variables";
 class CurrentRankSlider extends Component {
   state = {
     divisions: ["I", "II", "III", "IV"],
@@ -12,7 +13,8 @@ class CurrentRankSlider extends Component {
         "https://cors-anywhere.herokuapp.com/" +
           "https://na1.api.riotgames.com/lol/summoner/v4/summoners/" +
           summonerIds[index] +
-          "?api_key=RGAPI-e61ce34d-51af-41fc-96db-b59a7282c8e3"
+          "?api_key=" +
+          key
       )
         .then(result => {
           return result.json();
@@ -23,13 +25,26 @@ class CurrentRankSlider extends Component {
     }
   }
   componentDidMount() {
-    const key = "RGAPI-e61ce34d-51af-41fc-96db-b59a7282c8e3";
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const tierUpperCase = this.props.tier.toUpperCase();
-    const riotURL =
-      "https://na1.api.riotgames.com/lol/league/v4/entries/RANKED_SOLO_5x5/" +
-      tierUpperCase +
-      "/II?api_key=";
+    let riotURL = "";
+    let idType = "";
+
+    if (this.props.tier === "Master") {
+      riotURL =
+        "https://na1.api.riotgames.com/lol/league/v4/masterleagues/by-queue/RANKED_SOLO_5x5?api_key=";
+    } else if (this.props.tier === "Grandmaster") {
+      riotURL =
+        "https://na1.api.riotgames.com/lol/league/v4/grandmasterleagues/by-queue/RANKED_SOLO_5x5?api_key=";
+    } else if (this.props.tier === "Challenger") {
+      riotURL =
+        "https://na1.api.riotgames.com/lol/league/v4/challengerleagues/by-queue/RANKED_SOLO_5x5?api_key=";
+    } else {
+      riotURL =
+        "https://na1.api.riotgames.com/lol/league/v4/entries/RANKED_SOLO_5x5/" +
+        tierUpperCase +
+        "/II?api_key=";
+    }
+
     const fetchURL = String(proxyurl + riotURL + key);
 
     fetch(fetchURL)
@@ -37,19 +52,18 @@ class CurrentRankSlider extends Component {
         return res1.json();
       })
       .then(result1 => {
-        for (var index in result1) {
-          this.setState({
-            summonerIds: [...this.state.summonerIds, result1[index].summonerId]
-          });
+        for (var i = 0; i < 20; i++) {
+          if (idType === "account") {
+          } else {
+            this.setState({
+              summonerIds: [
+                ...this.state.summonerIds,
+                result1.entries[i].summonerId
+              ]
+            });
+          }
         }
-        // const test =
-        //   proxyurl +
-        //   "https://na1.api.riotgames.com/lol/summoner/v4/summoners/" +
-        //   this.state.summonerIds[0] +
-        //   "?api_key=" +
-        //   key;
 
-        //return fetch(test);
         this.buildAccountIdsArray(this.state.summonerIds);
       });
     // .then(result => {
