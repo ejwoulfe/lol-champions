@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
 import "./by-tier.scss";
 import Row from "react-bootstrap/Row";
