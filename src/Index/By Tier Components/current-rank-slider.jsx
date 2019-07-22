@@ -5,7 +5,8 @@ class CurrentRankSlider extends Component {
   state = {
     divisions: ["I", "II", "III", "IV"],
     summonerIds: [],
-    accountIds: []
+    accountIds: [],
+    totalChampions: []
   };
 
   fetchSummonerIds(rank) {
@@ -57,29 +58,67 @@ class CurrentRankSlider extends Component {
     this.fetchAccountIds(this.state.summonerIds);
   }
   async fetchAccountIds(summonerIds) {
+    let urls = [];
     for (var ids in summonerIds) {
-      await fetch(
+      urls.push(
         proxyurl +
           "https://na1.api.riotgames.com/lol/summoner/v4/summoners/" +
           summonerIds[ids] +
           "?api_key=" +
           key
-      )
-        .then(result => {
-          return result.json();
-        })
-        .then(result => {
-          this.setState({
-            accountIds: [...this.state.accountIds, result.accountId]
-          });
-        });
+      );
     }
-    console.log(this.state.accountIds);
+
+    await Promise.all(
+      urls.map(url =>
+        fetch(url)
+          .then(result => {
+            return result.json();
+          })
+
+          .then(result => {
+            this.setState({
+              accountIds: [...this.state.accountIds, result.accountId]
+            });
+          })
+      )
+    );
+
+    this.fetchChampionsPlayedBySummoners(this.state.accountIds);
   }
-  fetchChampionsPlayedBySummoners(accountIds) {
-    console.log(accountIds);
+  async fetchChampionsPlayedBySummoners(accountIds) {
+    const m = new Map();
+
+    await Promise.all(
+      accountIds.map(id =>
+        fetch(
+          proxyurl +
+            "https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/" +
+            id +
+            "?api_key=" +
+            key
+        )
+          .then(result => {
+            return result.json();
+          })
+
+          .then(result => {
+            let count = 1;
+            for (var i in result.matches) {
+              if (m.has(result.matches[i].champion)) {
+                m.set(result.matches[i].champion, count++);
+              } else {
+                m.set(result.matches[i].champion, count);
+              }
+            }
+          })
+      )
+    );
+    var testing = Array.from(m.values()).sort();
+    console.log(Array.from(m.values()).sort());
+    //console.log(this.state.totalChampions);
   }
-  componentDidMount() {
+  componentWillMount() {
     this.fetchSummonerIds(this.props.tier);
   }
 
