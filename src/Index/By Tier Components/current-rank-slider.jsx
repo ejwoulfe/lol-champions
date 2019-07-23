@@ -88,6 +88,8 @@ class CurrentRankSlider extends Component {
   }
   async fetchChampionsPlayedBySummoners(accountIds) {
     const m = new Map();
+    let max = 0;
+    let count = 1;
 
     await Promise.all(
       accountIds.map(id =>
@@ -103,19 +105,20 @@ class CurrentRankSlider extends Component {
           })
 
           .then(result => {
-            let count = 1;
-            for (var i in result.matches) {
-              if (m.has(result.matches[i].champion)) {
-                m.set(result.matches[i].champion, count++);
+            for (var i = 0; i < result.matches.length; i++) {
+              let championID = result.matches[i].champion;
+
+              if (m.has(championID)) {
+                m.set(championID, m.get(championID) + 1);
               } else {
-                m.set(result.matches[i].champion, count);
+                m.set(championID, 1);
               }
             }
           })
       )
     );
-    var testing = Array.from(m.values()).sort();
-    console.log(Array.from(m.values()).sort());
+    console.log(m);
+
     //console.log(this.state.totalChampions);
   }
   componentWillMount() {
