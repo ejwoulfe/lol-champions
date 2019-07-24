@@ -6,7 +6,8 @@ class CurrentRankSlider extends Component {
     divisions: ["I", "II", "III", "IV"],
     summonerIds: [],
     accountIds: [],
-    totalChampions: []
+    totalChampions: [],
+    chosenChampionIds: []
   };
 
   fetchSummonerIds(rank) {
@@ -117,9 +118,38 @@ class CurrentRankSlider extends Component {
           })
       )
     );
-    console.log(m);
+    var occurenceArray = Array.from(m.values());
+    var topTenValues = occurenceArray.sort((a, b) => b - a).slice(0, 10);
+    this.getSliderChampionIds(m, topTenValues);
 
     //console.log(this.state.totalChampions);
+  }
+  getByValue(map, searchValue) {
+    //console.log(this.state.chosenChampionIds);
+    // for (let [key, value] of map.entries()) {
+    //   if (value === searchValue) {
+    //     return key;
+    //   }
+    // }
+    let jhonKeys = [...map.entries()]
+      .filter(({ 1: v }) => v === searchValue)
+      .map(([k]) => k);
+    if (jhonKeys.length > 1) {
+      console.log(jhonKeys);
+    }
+  }
+  getSliderChampionIds(map, topTenArray) {
+    for (var i = 0; i < topTenArray.length; i++) {
+      this.setState({
+        chosenChampionIds: [
+          ...this.state.chosenChampionIds,
+          this.getByValue(
+            map,
+            topTenArray.sort((a, b) => b - a).slice(0, 10)[i]
+          )
+        ]
+      });
+    }
   }
   componentWillMount() {
     this.fetchSummonerIds(this.props.tier);
