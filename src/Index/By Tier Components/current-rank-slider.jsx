@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
 import { key, proxyurl } from "../../variables";
+import Slider from "react-slick";
+import Card from "react-bootstrap/Card";
+
 class CurrentRankSlider extends Component {
   state = {
-    divisions: ["I", "II", "III", "IV"],
     summonerIds: [],
     accountIds: [],
-    totalChampions: [],
-    chosenChampionIds: []
+    chosenChampionIds: [],
+    championsObjectArray: []
   };
 
   fetchSummonerIds(rank) {
@@ -58,6 +60,7 @@ class CurrentRankSlider extends Component {
     }
     this.fetchAccountIds(this.state.summonerIds);
   }
+
   async fetchAccountIds(summonerIds) {
     let urls = [];
     for (var ids in summonerIds) {
@@ -87,10 +90,9 @@ class CurrentRankSlider extends Component {
 
     this.fetchChampionsPlayedBySummoners(this.state.accountIds);
   }
+
   async fetchChampionsPlayedBySummoners(accountIds) {
     const m = new Map();
-    let max = 0;
-    let count = 1;
 
     await Promise.all(
       accountIds.map(id =>
@@ -120,47 +122,99 @@ class CurrentRankSlider extends Component {
     );
     var occurenceArray = Array.from(m.values());
     var topTenValues = occurenceArray.sort((a, b) => b - a).slice(0, 10);
-    this.getSliderChampionIds(m, topTenValues);
 
-    //console.log(this.state.totalChampions);
+    this.getSliderChampionIds(m, topTenValues);
   }
-  getByValue(map, searchValue) {
-    //console.log(this.state.chosenChampionIds);
-    // for (let [key, value] of map.entries()) {
-    //   if (value === searchValue) {
-    //     return key;
-    //   }
-    // }
-    let jhonKeys = [...map.entries()]
+  getByValue(map, searchValue, occurence) {
+    let keys = [...map.entries()]
       .filter(({ 1: v }) => v === searchValue)
       .map(([k]) => k);
-    if (jhonKeys.length > 1) {
-      console.log(jhonKeys);
-    }
+    return keys[occurence];
   }
   getSliderChampionIds(map, topTenArray) {
+    let tempArr = [];
+    let count = 0;
     for (var i = 0; i < topTenArray.length; i++) {
+      if (tempArr.includes(topTenArray.indexOf(topTenArray[i]))) {
+        count += 1;
+      } else {
+        count = 0;
+      }
+      tempArr.push(topTenArray.indexOf(topTenArray[i]));
       this.setState({
         chosenChampionIds: [
           ...this.state.chosenChampionIds,
           this.getByValue(
             map,
-            topTenArray.sort((a, b) => b - a).slice(0, 10)[i]
+            topTenArray.sort((a, b) => b - a).slice(0, 10)[i],
+            count
           )
         ]
       });
     }
+    this.getChampionFromID();
   }
-  componentWillMount() {
+  getChampionFromID() {
+    fetch(
+      "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
+    )
+      .then(res => res.json())
+      .then(result => {
+        let tempArr = [...this.state.chosenChampionIds];
+        for (var champion in result.data) {
+          let championObject = eval("result.data." + champion);
+          let currentKey = Number(championObject.key);
+          let keyIndex = tempArr.indexOf(currentKey);
+
+          if (tempArr.includes(currentKey)) {
+            this.setState({
+              championsObjectArray: [
+                ...this.state.championsObjectArray,
+                championObject
+              ]
+            });
+
+            tempArr.splice(keyIndex, 1);
+          }
+
+          if (tempArr.length === 0) {
+            break;
+          }
+        }
+      });
+  }
+  componentDidMount() {
     this.fetchSummonerIds(this.props.tier);
   }
 
   render() {
+    var settings = {
+      infinite: true,
+      speed: 500,
+      slidesToShow: 4,
+      slidesToScroll: 4
+    };
+    let freeChampions = this.state.championsObjectArray.map(champion => (
+      <Card key={champion} className="item">
+        <Card.Img
+          src={
+            "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" +
+            champion.id +
+            "_0.jpg"
+          }
+        />
+        <h4>{champion.name}</h4>
+      </Card>
+    ));
     return (
       <div>
         <h5>By Tier</h5>
         <hr />
+        <h1>{this.props.tier}</h1>
         <Button onClick={this.props.handleTransition}>{this.props.tier}</Button>
+        <div>
+          <Slider {...settings}>{freeChampions}</Slider>
+        </div>
       </div>
     );
   }
