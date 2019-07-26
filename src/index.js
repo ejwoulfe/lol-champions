@@ -8,6 +8,7 @@ import ByTierContainer from "./Index/By Tier Components/by-tier-container";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "./Index/index-style.css";
+
 ReactDOM.render(<NavigationBar />, document.getElementById("navigation"));
 
 ReactDOM.render(

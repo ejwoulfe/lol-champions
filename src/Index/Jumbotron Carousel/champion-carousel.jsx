@@ -12,6 +12,7 @@ class ChampionCarousel extends Component {
       isLoading: false
     };
   }
+
   componentDidMount() {
     this.setState({ isLoading: true });
     fetch(
@@ -29,7 +30,6 @@ class ChampionCarousel extends Component {
               championObjects: [...this.state.championObjects, champObject]
             });
           }
-        
 
           for (var i = 0; i < 3; i++) {
             let randomNumber = Math.floor(Math.random() * totalNumber);

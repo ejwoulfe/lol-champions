@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ByTier from "./by-tier-ranked-emblems";
 import CurrentRankSlider from "./current-rank-slider";
+import CurrentRankInformation from "./current-rank-information";
 import Iron from "../../Assets/Ranked Icons/Emblem_Iron.png";
 import Bronze from "../../Assets/Ranked Icons/Emblem_Bronze.png";
 import Silver from "../../Assets/Ranked Icons/Emblem_Silver.png";
@@ -51,10 +52,14 @@ class ByTierContainer extends Component {
   handleTransition(e) {
     this.setState({ isShowing: !this.state.isShowing });
     this.setState({ tierClickedOn: e.currentTarget.id });
-    console.log(eval(String(e.currentTarget.id)));
-    this.setState({ tierImage: e.currentTarget.id });
-  }
 
+    this.setState({ tierImage: e.currentTarget.firstElementChild.src });
+  }
+  componentDidUpdate() {
+    document
+      .getElementById("by_tier_container")
+      .scrollIntoView({ behavior: "smooth" });
+  }
   render() {
     if (this.state.isShowing) {
       return (
@@ -67,11 +72,14 @@ class ByTierContainer extends Component {
       );
     } else {
       return (
-        <CurrentRankSlider
-          tier={this.state.tierClickedOn}
-          image={this.state.tierImage}
-          handleTransition={this.handleTransition}
-        />
+        <React.Fragment>
+          <CurrentRankInformation
+            tier={this.state.tierClickedOn}
+            image={this.state.tierImage}
+            handleTransition={this.handleTransition}
+          />
+          <CurrentRankSlider tier={this.state.tierClickedOn} />
+        </React.Fragment>
       );
     }
   }

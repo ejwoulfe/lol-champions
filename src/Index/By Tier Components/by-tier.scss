@@ -45,14 +45,60 @@
   }
 }
 #current_rank_container {
-  #rank_titles {
+  #rank_information {
     h1 {
+      animation-duration: 2s;
+      animation-name: slidein;
+
       color: $titleColor;
       text-align: center;
+      font-family: $secondaryTitleFont;
+      letter-spacing: 1px;
     }
     #back_arrow {
       height: 30px;
       width: 40px;
     }
+    #current_rank_image {
+      margin: auto;
+      display: block;
+      width: 25%;
+      opacity: 0;
+      animation-delay: 2s;
+      animation: fadeIn 2.5s ease-in both;
+    }
+  }
+}
+#loading_container {
+  padding-top: 100px;
+
+  h4 {
+    text-align: center;
+  }
+  #loading_spinner {
+    margin: auto;
+    display: block;
+    width: 50%;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -20%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes slidein {
+  from {
+    margin-top: 100%;
+    height: 300%;
+  }
+
+  to {
+    margin-top: 0%;
+    height: 100%;
   }
 }

@@ -1,17 +1,17 @@
 import React, { Component } from "react";
-import Button from "react-bootstrap/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { key, proxyurl } from "../../variables";
 import Slider from "react-slick";
 import Card from "react-bootstrap/Card";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 class CurrentRankSlider extends Component {
   state = {
     summonerIds: [],
     accountIds: [],
     chosenChampionIds: [],
-    championsObjectArray: []
+    championsObjectArray: [],
+    isLoading: false
   };
 
   fetchSummonerIds(rank) {
@@ -184,19 +184,30 @@ class CurrentRankSlider extends Component {
           }
         }
       });
+    this.setState({ isLoading: false });
   }
   componentDidMount() {
-    //this.fetchSummonerIds(this.props.tier);
+    this.setState({ isLoading: true });
+    this.fetchSummonerIds(this.props.tier);
   }
 
   render() {
+    const isLoading = this.state.isLoading;
+    if (isLoading) {
+      return (
+        <div id="loading_container">
+          <FontAwesomeIcon id="loading_spinner" icon={faSpinner} spin />
+          <h4>Retrieving Data</h4>
+        </div>
+      );
+    }
     var settings = {
       infinite: true,
       speed: 500,
       slidesToShow: 4,
       slidesToScroll: 4
     };
-    let freeChampions = this.state.championsObjectArray.map(champion => (
+    let mostPlayedChampions = this.state.championsObjectArray.map(champion => (
       <Card key={champion} className="item">
         <Card.Img
           src={
@@ -209,22 +220,8 @@ class CurrentRankSlider extends Component {
       </Card>
     ));
     return (
-      <div id="current_rank_container">
-        <h5>By Tier</h5>
-        <hr />
-        <div id="rank_titles">
-          <Button onClick={this.props.handleTransition} variant="link">
-            <span>
-              <FontAwesomeIcon id="back_arrow" icon={faArrowLeft} />
-            </span>
-          </Button>
-          <h1>{this.props.tier}</h1>
-          <img src={this.props.image} alt="current rank emblem" />
-          <p>{this.props.image}</p>
-        </div>
-        <div id="slider_container">
-          <Slider {...settings}>{freeChampions}</Slider>
-        </div>
+      <div id="slider_container">
+        <Slider {...settings}>{mostPlayedChampions}</Slider>
       </div>
     );
   }

@@ -8,7 +8,6 @@ class FreeChampionsSlider extends Component {
     super(props);
     this.state = { width: window.innerWidth };
   }
-
   render() {
     var settings = {
       infinite: true,
