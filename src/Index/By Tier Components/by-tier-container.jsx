@@ -16,6 +16,7 @@ class ByTierContainer extends Component {
     this.state = {
       isShowing: true,
       tierClickedOn: "None",
+      tierImage: "",
 
       lowTiers: [
         { name: "Iron", image: Iron, style: { color: "#A9A5A4" } },
@@ -48,9 +49,10 @@ class ByTierContainer extends Component {
   }
 
   handleTransition(e) {
-   
     this.setState({ isShowing: !this.state.isShowing });
     this.setState({ tierClickedOn: e.currentTarget.id });
+    console.log(eval(String(e.currentTarget.id)));
+    this.setState({ tierImage: e.currentTarget.id });
   }
 
   render() {
@@ -67,6 +69,7 @@ class ByTierContainer extends Component {
       return (
         <CurrentRankSlider
           tier={this.state.tierClickedOn}
+          image={this.state.tierImage}
           handleTransition={this.handleTransition}
         />
       );

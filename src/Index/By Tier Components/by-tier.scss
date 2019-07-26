@@ -44,3 +44,15 @@
     font-weight: bold;
   }
 }
+#current_rank_container {
+  #rank_titles {
+    h1 {
+      color: $titleColor;
+      text-align: center;
+    }
+    #back_arrow {
+      height: 30px;
+      width: 40px;
+    }
+  }
+}
