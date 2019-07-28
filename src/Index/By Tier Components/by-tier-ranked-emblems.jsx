@@ -46,7 +46,7 @@ function ByTierRankedEmblems(props) {
 
   return (
     <div>
-      <h5>By Tier</h5>
+      <h5>Most Picked Champions By Tier</h5>
       <hr />
       <Container>
         <Row>{listOfLowTiers}</Row>

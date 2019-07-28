@@ -123,7 +123,7 @@ class CurrentRankSlider extends Component {
       )
     );
     var occurenceArray = Array.from(m.values());
-    var topTenValues = occurenceArray.sort((a, b) => b - a).slice(0, 10);
+    var topTenValues = occurenceArray.sort((a, b) => b - a).slice(0, 16);
 
     this.getSliderChampionIds(m, topTenValues);
   }
@@ -148,7 +148,7 @@ class CurrentRankSlider extends Component {
           ...this.state.chosenChampionIds,
           this.getByValue(
             map,
-            topTenArray.sort((a, b) => b - a).slice(0, 10)[i],
+            topTenArray.sort((a, b) => b - a).slice(0, 16)[i],
             count
           )
         ]
@@ -208,7 +208,7 @@ class CurrentRankSlider extends Component {
       slidesToScroll: 4
     };
     let mostPlayedChampions = this.state.championsObjectArray.map(champion => (
-      <Card key={champion} className="item">
+      <Card key={champion}>
         <Card.Img
           src={
             "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" +

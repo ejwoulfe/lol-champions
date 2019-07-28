@@ -81,6 +81,11 @@
     width: 50%;
   }
 }
+#slider_container {
+  max-height: 300px;
+  animation-name: slidein;
+  animation-duration: 3s;
+}
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -91,6 +96,7 @@
     transform: translate3d(0, 0, 0);
   }
 }
+
 @keyframes slidein {
   from {
     margin-top: 100%;
