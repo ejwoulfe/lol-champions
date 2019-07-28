@@ -1,24 +1,20 @@
 import React, { Component } from "react";
 import FreeChampionsSlider from "../Free Champions Components/free-champions-slider";
+import { key, proxyurl } from "../../variables";
 
 class FreeChampions extends Component {
   constructor() {
     super();
     this.state = {
       freeChampionIds: [],
-      championsObjectArray: []
+      championsObjectArray: [],
+      isLoading: false
     };
   }
 
   componentDidMount() {
     this.setState({ isLoading: true });
 
-    const key = "RGAPI-e4112833-876a-486c-a208-7f485214a169";
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    // fetch(
-    //   proxyurl +
-    //     "https://na1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=RGAPI-d93343ca-83fb-4cab-a2df-ce170cba6763"
-    // )
     Promise.all([
       fetch(
         proxyurl +
@@ -62,6 +58,7 @@ class FreeChampions extends Component {
               break;
             }
           }
+          this.setState({ isLoading: false });
         }
         // error => {
         //   alert("Error");
@@ -81,6 +78,10 @@ class FreeChampions extends Component {
   }
 
   render() {
+    const isLoading = this.state.isLoading;
+    if (isLoading) {
+      return <p>Loading ...</p>;
+    }
     return (
       <React.Fragment>
         <FreeChampionsSlider data={this.state.championsObjectArray} />

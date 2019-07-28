@@ -8,7 +8,6 @@ class FreeChampionsSlider extends Component {
     super(props);
     this.state = { width: window.innerWidth };
   }
-
   render() {
     var settings = {
       infinite: true,
@@ -26,7 +25,7 @@ class FreeChampionsSlider extends Component {
             "_0.jpg"
           }
         />
-        <h4>{champion.id}</h4>
+        <h4>{champion.name}</h4>
       </Card>
     ));
     return (

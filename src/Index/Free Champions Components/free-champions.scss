@@ -5,7 +5,7 @@
   h5 {
     color: $titleColor;
     font-weight: bold;
-    font-family: $titleFont;
+    font-family: $secondaryTitleFont;
   }
   hr {
     height: 1.5px;
@@ -37,7 +37,10 @@
       object-fit: contain;
     }
     h4 {
-      font-family: "Laila", serif;
+      letter-spacing: 0.15px;
+
+      font-family: $titleFont;
+
       position: absolute;
       bottom: 10px;
       color: $titleColor;

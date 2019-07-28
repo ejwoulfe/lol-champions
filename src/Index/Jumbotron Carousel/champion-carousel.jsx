@@ -12,6 +12,7 @@ class ChampionCarousel extends Component {
       isLoading: false
     };
   }
+
   componentDidMount() {
     this.setState({ isLoading: true });
     fetch(
