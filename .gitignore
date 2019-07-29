@@ -7,7 +7,7 @@
 
 #api keys
 .env
-src/variables.js
+
 # testing
 /coverage
 

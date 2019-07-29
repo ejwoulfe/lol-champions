@@ -30,8 +30,6 @@ class FreeChampions extends Component {
       })
       .then(
         ([result1, result2]) => {
-          // set state in here
-
           this.setState({
             freeChampionIds: result1.freeChampionIds
           });
