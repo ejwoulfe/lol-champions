@@ -38,13 +38,6 @@ class ByTierContainer extends Component {
         },
         { name: "Challenger", image: Challenger, style: { color: "#FFFFE5" } }
       ]
-
-      // lowTiers: ["Iron", "Bronze", "Silver"],
-      // midTiers: ["Gold", "Platinum", "Diamond"],
-      // highTiers: ["Master", "Grandmaster", "Challenger"],
-      // lowTierImages: [Iron, Bronze, Silver],
-      // lowTierImages: [Gold, Platinum, Diamond],
-      // lowTierImages: [Master, Grandmaster, Challenger]
     };
     this.handleTransition = this.handleTransition.bind(this);
   }
@@ -54,12 +47,11 @@ class ByTierContainer extends Component {
     this.setState({ tierClickedOn: e.currentTarget.id });
 
     this.setState({ tierImage: e.currentTarget.firstElementChild.src });
-  }
-  componentDidUpdate() {
     document
       .getElementById("by_tier_container")
       .scrollIntoView({ behavior: "smooth" });
   }
+
   render() {
     if (this.state.isShowing) {
       return (

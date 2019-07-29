@@ -10,10 +10,7 @@ class NavigationBar extends Component {
     super();
     this.state = {
       logo: "LoL Champions",
-      links: [
-        { name: "Champions", extension: "/champions" },
-        { name: "By Tier", extension: "/by-tier" }
-      ]
+      links: [{ name: "champions" }, { name: "by tier" }]
     };
   }
 
@@ -21,11 +18,14 @@ class NavigationBar extends Component {
     return (
       <React.Fragment>
         <Navbar collapseOnSelect expand="md" variant="dark">
-          <Logo logo={this.state.logo} />
+          <Logo logo={this.state.logo} handlePage={this.props.handlePage} />
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <SearchBar />
-            <LinksList links={this.state.links} />
+            <LinksList
+              links={this.state.links}
+              handlePage={this.props.handlePage}
+            />
           </Navbar.Collapse>
         </Navbar>
       </React.Fragment>
