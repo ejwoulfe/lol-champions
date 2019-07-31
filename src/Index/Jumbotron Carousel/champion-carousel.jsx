@@ -11,9 +11,11 @@ class ChampionCarousel extends Component {
       chosenChampions: [],
       isLoading: false
     };
+    this._isMounted = false;
   }
 
   componentDidMount() {
+    this._isMount = true;
     this.setState({ isLoading: true });
     fetch(
       "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
@@ -26,9 +28,10 @@ class ChampionCarousel extends Component {
           for (var champion in result.data) {
             var champObject = eval("result.data." + champion + ".id");
 
-            this.setState({
-              championObjects: [...this.state.championObjects, champObject]
-            });
+            this._isMounted &&
+              this.setState({
+                championObjects: [...this.state.championObjects, champObject]
+              });
           }
 
           for (var i = 0; i < 3; i++) {
@@ -37,16 +40,17 @@ class ChampionCarousel extends Component {
               randomNumber = Math.floor(Math.random() * totalNumber);
             }
 
-            this.setState({
-              chosenChampions: [
-                ...this.state.chosenChampions,
-                "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" +
-                  this.state.championObjects[randomNumber] +
-                  "_0.jpg"
-              ],
-              chosenNumbers: [...this.state.chosenNumbers, randomNumber],
-              isLoading: false
-            });
+            this._isMounted &&
+              this.setState({
+                chosenChampions: [
+                  ...this.state.chosenChampions,
+                  "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" +
+                    this.state.championObjects[randomNumber] +
+                    "_0.jpg"
+                ],
+                chosenNumbers: [...this.state.chosenNumbers, randomNumber],
+                isLoading: false
+              });
           }
         },
 
@@ -57,6 +61,9 @@ class ChampionCarousel extends Component {
           alert("Error");
         }
       );
+  }
+  componentWillUnmount() {
+    this._isMounted = false;
   }
   render() {
     const isLoading = this.state.isLoading;

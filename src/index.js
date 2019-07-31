@@ -4,6 +4,7 @@ import NavigationBar from "./Navigation Components/navigation-container";
 import ChampionCarousel from "./Index/Jumbotron Carousel/champion-carousel";
 import FreeChampions from "./Index/Free Champions Components/free-champions";
 import ByTierContainer from "./Index/By Tier Components/by-tier-container";
+import ChampionsListContainer from "./Champions List/champions-list-container";
 import "bootstrap/dist/css/bootstrap.css";
 import "./Index/index-style.css";
 
@@ -43,7 +44,7 @@ class Index extends Component {
           <div id="navigation">
             <NavigationBar handlePage={this.handlePage} />
           </div>
-          <h1>Hello</h1>
+          <ChampionsListContainer />
         </div>
       );
     }

@@ -10,9 +10,13 @@ class FreeChampions extends Component {
       championsObjectArray: [],
       isLoading: false
     };
+    this._isMounted = false;
   }
-
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
   componentDidMount() {
+    this._isMounted = true;
     this.setState({ isLoading: true });
 
     Promise.all([
@@ -30,9 +34,10 @@ class FreeChampions extends Component {
       })
       .then(
         ([result1, result2]) => {
-          this.setState({
-            freeChampionIds: result1.freeChampionIds
-          });
+          this._isMounted &&
+            this.setState({
+              freeChampionIds: result1.freeChampionIds
+            });
 
           let tempArr = [...this.state.freeChampionIds];
 
@@ -42,12 +47,13 @@ class FreeChampions extends Component {
             let keyIndex = tempArr.indexOf(currentKey);
 
             if (tempArr.includes(currentKey)) {
-              this.setState({
-                championsObjectArray: [
-                  ...this.state.championsObjectArray,
-                  championObject
-                ]
-              });
+              this._isMounted &&
+                this.setState({
+                  championsObjectArray: [
+                    ...this.state.championsObjectArray,
+                    championObject
+                  ]
+                });
 
               tempArr.splice(keyIndex, 1);
             }
@@ -56,7 +62,7 @@ class FreeChampions extends Component {
               break;
             }
           }
-          this.setState({ isLoading: false });
+          this._isMounted && this.setState({ isLoading: false });
         }
         // error => {
         //   alert("Error");
