@@ -13,16 +13,19 @@ class ChampionCarousel extends Component {
     };
     this._isMounted = false;
   }
-
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
   componentDidMount() {
-    this._isMount = true;
+    this._isMounted = true;
     this.setState({ isLoading: true });
     fetch(
-      "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
+      "http://ddragon.leagueoflegends.com/cdn/9.13.1/data/en_US/championFull.json"
     )
       .then(res => res.json())
       .then(
         result => {
+          console.log(this.state._isMounted);
           const totalNumber = 143;
 
           for (var champion in result.data) {
@@ -52,6 +55,7 @@ class ChampionCarousel extends Component {
                 isLoading: false
               });
           }
+          console.log(this.state.championObjects);
         },
 
         // Note: it's important to handle errors here
@@ -62,44 +66,43 @@ class ChampionCarousel extends Component {
         }
       );
   }
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
+
   render() {
     const isLoading = this.state.isLoading;
     if (isLoading) {
       return <p>Loading ...</p>;
+    } else {
+      return (
+        <React.Fragment>
+          <div id="overlay">
+            <h1>Welcome to LoL Champions!</h1>
+          </div>
+          <Carousel>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src={this.state.chosenChampions[0]}
+                alt="Test Slide"
+              />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src={this.state.chosenChampions[1]}
+                alt="Test Slide"
+              />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src={this.state.chosenChampions[2]}
+                alt="Test Slide"
+              />
+            </Carousel.Item>
+          </Carousel>
+        </React.Fragment>
+      );
     }
-    return (
-      <React.Fragment>
-        <div id="overlay">
-          <h1>Welcome to LoL Champions!</h1>
-        </div>
-        <Carousel>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src={this.state.chosenChampions[0]}
-              alt="Test Slide"
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src={this.state.chosenChampions[1]}
-              alt="Test Slide"
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src={this.state.chosenChampions[2]}
-              alt="Test Slide"
-            />
-          </Carousel.Item>
-        </Carousel>
-      </React.Fragment>
-    );
   }
 }
 
