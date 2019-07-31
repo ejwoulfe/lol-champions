@@ -25,7 +25,6 @@ class ChampionCarousel extends Component {
       .then(res => res.json())
       .then(
         result => {
-          console.log(this.state._isMounted);
           const totalNumber = 143;
 
           for (var champion in result.data) {
@@ -55,7 +54,6 @@ class ChampionCarousel extends Component {
                 isLoading: false
               });
           }
-          console.log(this.state.championObjects);
         },
 
         // Note: it's important to handle errors here

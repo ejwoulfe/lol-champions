@@ -5,6 +5,7 @@ import ChampionCarousel from "./Index/Jumbotron Carousel/champion-carousel";
 import FreeChampions from "./Index/Free Champions Components/free-champions";
 import ByTierContainer from "./Index/By Tier Components/by-tier-container";
 import ChampionsListContainer from "./Champions List/champions-list-container";
+import ChampionContainer from "./Specific Champion/ChampionContainer";
 import "bootstrap/dist/css/bootstrap.css";
 import "./Index/index-style.css";
 
@@ -48,6 +49,16 @@ class Index extends Component {
         </div>
       );
     }
+    // } else if (this.state.page === "champion") {
+    //   return (
+    //     <div>
+    //       <div id="navigation">
+    //         <NavigationBar handlePage={this.handlePage} />
+    //       </div>
+    //       <ChampionContainer />
+    //     </div>
+    //   );
+    // }
   }
 }
 render(<Index />, window.document.getElementById("app"));
