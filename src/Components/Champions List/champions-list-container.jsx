@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Row from "react-bootstrap/Row";
 import ChampionsList from "./champions-list";
 
 class ChampionsListContainer extends Component {
@@ -42,7 +43,7 @@ class ChampionsListContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div id="champions_list_container">
         <ChampionsList
           list={this.state.championsList}
           championClickedOn={this.championClickedOn}

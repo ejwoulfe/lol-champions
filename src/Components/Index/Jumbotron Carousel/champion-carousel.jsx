@@ -71,7 +71,7 @@ class ChampionCarousel extends Component {
       return <p>Loading ...</p>;
     } else {
       return (
-        <React.Fragment>
+        <div id="carousel_container">
           <div id="overlay">
             <h1>Welcome to LoL Champions!</h1>
           </div>
@@ -98,7 +98,7 @@ class ChampionCarousel extends Component {
               />
             </Carousel.Item>
           </Carousel>
-        </React.Fragment>
+        </div>
       );
     }
   }

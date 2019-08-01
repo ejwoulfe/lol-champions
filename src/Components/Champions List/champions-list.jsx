@@ -1,6 +1,8 @@
 import React from "react";
 import "./champions-list.scss";
 import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 function ChampionsList(props) {
   const listOfChampions = props.list.map(champion => (
     <Button
@@ -26,7 +28,11 @@ function ChampionsList(props) {
     </Button>
   ));
 
-  return <div id="champions_list">{listOfChampions}</div>;
+  return (
+    <div id="champions_list">
+      <Row>{listOfChampions}</Row>
+    </div>
+  );
 }
 
 export default ChampionsList;

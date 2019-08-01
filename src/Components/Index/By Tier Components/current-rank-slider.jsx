@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { key, proxyurl } from "../../variables";
+import { key, proxyurl } from "../../../variables";
 import Slider from "react-slick";
 import Card from "react-bootstrap/Card";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";

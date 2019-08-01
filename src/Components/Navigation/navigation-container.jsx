@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import LinksList from "./links-list";
+import Col from "react-bootstrap/Col";
+import { Link } from "react-router-dom";
 import SearchBar from "./search-bar";
 import Logo from "./logo";
 import "./navigation.scss";
@@ -16,19 +17,27 @@ class NavigationBar extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <div id="navigation">
         <Navbar collapseOnSelect expand="md" variant="dark">
           <Logo logo={this.state.logo} handlePage={this.props.handlePage} />
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <SearchBar />
-            <LinksList
-              links={this.state.links}
-              handlePage={this.props.handlePage}
-            />
+            <Col id="links_container" className="col-sm-4 col-xs-6">
+              <Link
+                to="/list"
+                id={this.state.links[0].name}
+                className="nav-item ml-auto"
+              >
+                {this.state.links[0].name}
+              </Link>
+              <Link id={this.state.links[1].name} className="nav-item ml-auto">
+                {this.state.links[1].name}
+              </Link>
+            </Col>
           </Navbar.Collapse>
         </Navbar>
-      </React.Fragment>
+      </div>
     );
   }
 }

@@ -1,16 +1,19 @@
-@import "../styles/variables.scss";
+@import "../../styles/variables.scss";
 #champions_list {
   margin-top: 60px;
 
   #champion_link {
     text-align: center;
-    display: inline-block;
+
     padding: 10px;
     #img_container {
       position: relative;
       img {
         text-decoration: none;
         border: 2px solid transparent;
+        display: block;
+        margin: 0px auto;
+        max-width: 100%;
       }
       .overlay {
         position: absolute;
@@ -34,4 +37,7 @@
       }
     }
   }
+}
+.row {
+  justify-content: space-evenly;
 }

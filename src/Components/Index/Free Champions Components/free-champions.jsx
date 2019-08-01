@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import FreeChampionsSlider from "../Free Champions Components/free-champions-slider";
-import { key, proxyurl } from "../../variables";
+import { key, proxyurl } from "../../../variables";
 
 class FreeChampions extends Component {
   constructor() {
@@ -87,9 +87,9 @@ class FreeChampions extends Component {
       return <p>Loading ...</p>;
     }
     return (
-      <React.Fragment>
+      <div id="free_champions_container">
         <FreeChampionsSlider data={this.state.championsObjectArray} />
-      </React.Fragment>
+      </div>
     );
   }
 }

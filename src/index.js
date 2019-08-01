@@ -1,64 +1,20 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-import NavigationBar from "./Navigation Components/navigation-container";
-import ChampionCarousel from "./Index/Jumbotron Carousel/champion-carousel";
-import FreeChampions from "./Index/Free Champions Components/free-champions";
-import ByTierContainer from "./Index/By Tier Components/by-tier-container";
-import ChampionsListContainer from "./Champions List/champions-list-container";
-import ChampionContainer from "./Specific Champion/ChampionContainer";
+import { Route, BrowserRouter } from "react-router-dom";
+import { Home } from "./Components/Home";
+import { List } from "./Components/Champions List";
+import { Champion } from "./Components/Champion";
 import "bootstrap/dist/css/bootstrap.css";
-import "./Index/index-style.css";
-
+import "./Components/Index/index-style.css";
 class Index extends Component {
-  constructor() {
-    super();
-    this.state = {
-      page: "index"
-    };
-    this.handlePage = this.handlePage.bind(this);
-  }
-  handlePage(e) {
-    this.setState({ page: e.currentTarget.id });
-  }
   render() {
-    if (this.state.page === "index") {
-      return (
-        <div>
-          <div id="navigation">
-            <NavigationBar handlePage={this.handlePage} />
-          </div>
-          <div id="carousel_container">
-            <ChampionCarousel />
-          </div>
-          <div id="free_champions_container">
-            <FreeChampions />
-          </div>
-
-          <div id="by_tier_container">
-            <ByTierContainer />
-          </div>
-        </div>
-      );
-    } else if (this.state.page === "champions") {
-      return (
-        <div>
-          <div id="navigation">
-            <NavigationBar handlePage={this.handlePage} />
-          </div>
-          <ChampionsListContainer />
-        </div>
-      );
-    }
-    // } else if (this.state.page === "champion") {
-    //   return (
-    //     <div>
-    //       <div id="navigation">
-    //         <NavigationBar handlePage={this.handlePage} />
-    //       </div>
-    //       <ChampionContainer />
-    //     </div>
-    //   );
-    // }
+    return (
+      <BrowserRouter>
+        <Route path={"/home"} component={Home} />
+        <Route path={"/list"} component={List} />
+        <Route path={"/champion"} component={Champion} />
+      </BrowserRouter>
+    );
   }
 }
 render(<Index />, window.document.getElementById("app"));
