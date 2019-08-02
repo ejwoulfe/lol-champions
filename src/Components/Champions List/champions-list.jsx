@@ -1,19 +1,22 @@
 import React from "react";
 import "./champions-list.scss";
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
+import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 function ChampionsList(props) {
   const listOfChampions = props.list.map(champion => (
-    <Button
+    <Link
       variant="link"
       key={champion.id}
       id="champion_link"
-      onClick={props.championClickedOn}
+      to={{
+        pathname: "champion/" + champion.name,
+        state: { champion: champion }
+      }}
     >
       <div id="img_container">
         <img
           id={champion.id}
+          alt={champion.name}
           src={
             "http://ddragon.leagueoflegends.com/cdn/9.13.1/img/champion/" +
             champion.id +
@@ -25,7 +28,7 @@ function ChampionsList(props) {
       </div>
 
       <div id="champion_name">{champion.name}</div>
-    </Button>
+    </Link>
   ));
 
   return (

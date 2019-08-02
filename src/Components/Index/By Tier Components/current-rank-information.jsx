@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 class CurrentRankInformation extends Component {
   render() {
     return (
-      <React.Fragment>
+      <div id="current_rank_container">
         <h5>Most Picked Champions By Tier</h5>
         <hr />
         <div id="rank_information">
@@ -22,7 +22,7 @@ class CurrentRankInformation extends Component {
             id="current_rank_image"
           />
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }

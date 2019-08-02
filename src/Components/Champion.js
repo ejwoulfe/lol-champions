@@ -6,7 +6,6 @@ export class Champion extends Component {
   render() {
     return (
       <div>
-        <NavigationBar />
         <ChampionContainer />
       </div>
     );

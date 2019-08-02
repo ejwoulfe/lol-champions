@@ -66,7 +66,7 @@ class ByTierContainer extends Component {
       );
     } else {
       return (
-        <div id="current_rank_container">
+        <div id="by_tier_container">
           <CurrentRankInformation
             tier={this.state.tierClickedOn}
             image={this.state.tierImage}

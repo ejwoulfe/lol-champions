@@ -11,15 +11,26 @@ class NavigationBar extends Component {
     super();
     this.state = {
       logo: "LoL Champions",
-      links: [{ name: "champions" }, { name: "by tier" }]
+      links: [{ name: "champions" }, { name: "by tier" }],
+      clicked: false
     };
+    this.changeState = this.changeState.bind(this);
   }
-
+  componentDidUpdate() {
+    if (this.state.clicked === true) {
+      document
+        .getElementById("by_tier_container")
+        .scrollIntoView({ behavior: "smooth" });
+    }
+  }
+  changeState() {
+    this.setState({ clicked: true });
+  }
   render() {
     return (
       <div id="navigation">
         <Navbar collapseOnSelect expand="md" variant="dark">
-          <Logo logo={this.state.logo} handlePage={this.props.handlePage} />
+          <Logo logo={this.state.logo} />
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <SearchBar />
@@ -31,7 +42,12 @@ class NavigationBar extends Component {
               >
                 {this.state.links[0].name}
               </Link>
-              <Link id={this.state.links[1].name} className="nav-item ml-auto">
+              <Link
+                id={this.state.links[1].name}
+                className="nav-item ml-auto"
+                to="/home"
+                onClick={this.changeState}
+              >
                 {this.state.links[1].name}
               </Link>
             </Col>
