@@ -6,7 +6,7 @@ export class Champion extends Component {
   render() {
     return (
       <div>
-        <ChampionContainer />
+        <ChampionContainer champion={this.props.location.state.champion} />
       </div>
     );
   }

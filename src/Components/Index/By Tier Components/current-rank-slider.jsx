@@ -196,7 +196,12 @@ class CurrentRankSlider extends Component {
     if (isLoading) {
       return (
         <div id="loading_container">
-          <FontAwesomeIcon id="loading_spinner" icon={faSpinner} spin />
+          <FontAwesomeIcon
+            id="loading_spinner"
+            style={{ color: "#bdf2ef" }}
+            icon={faSpinner}
+            spin
+          />
           <h4>Retrieving Data</h4>
         </div>
       );

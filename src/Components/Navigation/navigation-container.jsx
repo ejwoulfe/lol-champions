@@ -12,19 +12,20 @@ class NavigationBar extends Component {
     this.state = {
       logo: "LoL Champions",
       links: [{ name: "champions" }, { name: "by tier" }],
-      clicked: false
+      clickedTier: false,
+      clickedHome: false
     };
     this.changeState = this.changeState.bind(this);
   }
   componentDidUpdate() {
-    if (this.state.clicked === true) {
+    if (this.state.clickedTier === true) {
       document
         .getElementById("by_tier_container")
         .scrollIntoView({ behavior: "smooth" });
     }
   }
   changeState() {
-    this.setState({ clicked: true });
+    this.setState({ clickedTier: true });
   }
   render() {
     return (
@@ -45,7 +46,7 @@ class NavigationBar extends Component {
               <Link
                 id={this.state.links[1].name}
                 className="nav-item ml-auto"
-                to="/home"
+                to="/"
                 onClick={this.changeState}
               >
                 {this.state.links[1].name}

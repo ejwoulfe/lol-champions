@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { Navbar, Col, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class Logo extends Component {
   render() {
     return (
       <Col id="logo_container" xs={2}>
         <Navbar.Brand>
-          <Nav.Link id="index" onClick={this.props.handlePage}>
+          <Link id="index" to="/">
             {this.props.logo}
-          </Nav.Link>
+          </Link>
         </Navbar.Brand>
       </Col>
     );

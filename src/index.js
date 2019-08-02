@@ -12,7 +12,7 @@ class Index extends Component {
     return (
       <BrowserRouter>
         <NavigationBar />
-        <Route path={"/home"} component={Home} />
+        <Route exact path="/" component={Home} />
         <Route path={"/list"} component={List} />
         <Route path={"/champion/:handle"} component={Champion} />
       </BrowserRouter>
