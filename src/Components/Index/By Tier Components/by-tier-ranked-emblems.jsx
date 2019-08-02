@@ -45,7 +45,7 @@ function ByTierRankedEmblems(props) {
   ));
 
   return (
-    <div>
+    <React.Fragment>
       <h5>Most Picked Champions By Tier</h5>
       <hr />
       <Container>
@@ -53,7 +53,7 @@ function ByTierRankedEmblems(props) {
         <Row>{listOfMidTiers}</Row>
         <Row>{listOfHighTiers}</Row>
       </Container>
-    </div>
+    </React.Fragment>
   );
 }
 export default ByTierRankedEmblems;

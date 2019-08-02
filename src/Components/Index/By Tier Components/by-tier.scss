@@ -1,4 +1,4 @@
-@import "../../styles/variables.scss";
+@import "../../../styles/variables.scss";
 #by_tier_container {
   margin-top: 50px;
   min-height: 1200px;
@@ -73,6 +73,7 @@
   padding-top: 100px;
 
   h4 {
+    color: $titleColor;
     text-align: center;
   }
   #loading_spinner {

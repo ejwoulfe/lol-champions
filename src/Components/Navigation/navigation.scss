@@ -1,4 +1,4 @@
-@import "../styles/variables.scss";
+@import "../../styles/variables.scss";
 #navigation {
   background-color: #1e2035;
   border-radius: 5px;
@@ -64,6 +64,9 @@
 @media (max-width: 576px) {
   #search_icon {
     display: none;
+  }
+  #search_container #bar_and_icon #search_bar_input {
+    width: 100%;
   }
   #links_container {
     padding-left: 0px;

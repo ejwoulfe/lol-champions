@@ -13,7 +13,7 @@ class SearchBar extends Component {
     };
 
     return (
-      <Col xs={6} id="search_container">
+      <Col md={6} id="search_container" className="col-xs-4">
         <Form inline style={width} id="bar_and_icon">
           <FormControl
             type="text"

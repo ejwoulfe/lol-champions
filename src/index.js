@@ -1,53 +1,22 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-import NavigationBar from "./Navigation Components/navigation-container";
-import ChampionCarousel from "./Index/Jumbotron Carousel/champion-carousel";
-import FreeChampions from "./Index/Free Champions Components/free-champions";
-import ByTierContainer from "./Index/By Tier Components/by-tier-container";
-import ChampionsListContainer from "./Champions List/champions-list-container";
+import { Route, BrowserRouter } from "react-router-dom";
+import { Home } from "./Components/Home";
+import { List } from "./Components/Champions List";
+import { Champion } from "./Components/Champion";
+import NavigationBar from "./Components/Navigation/navigation-container";
 import "bootstrap/dist/css/bootstrap.css";
-import "./Index/index-style.css";
-
+import "./Components/Index/index-style.css";
 class Index extends Component {
-  constructor() {
-    super();
-    this.state = {
-      page: "index"
-    };
-    this.handlePage = this.handlePage.bind(this);
-  }
-  handlePage(e) {
-    this.setState({ page: e.currentTarget.id });
-  }
   render() {
-    if (this.state.page === "index") {
-      return (
-        <div>
-          <div id="navigation">
-            <NavigationBar handlePage={this.handlePage} />
-          </div>
-          <div id="carousel_container">
-            <ChampionCarousel />
-          </div>
-          <div id="free_champions_container">
-            <FreeChampions />
-          </div>
-
-          <div id="by_tier_container">
-            <ByTierContainer />
-          </div>
-        </div>
-      );
-    } else if (this.state.page === "champions") {
-      return (
-        <div>
-          <div id="navigation">
-            <NavigationBar handlePage={this.handlePage} />
-          </div>
-          <ChampionsListContainer />
-        </div>
-      );
-    }
+    return (
+      <BrowserRouter>
+        <NavigationBar />
+        <Route exact path="/" component={Home} />
+        <Route path={"/list"} component={List} />
+        <Route path={"/champion/:handle"} component={Champion} />
+      </BrowserRouter>
+    );
   }
 }
 render(<Index />, window.document.getElementById("app"));

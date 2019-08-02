@@ -1,11 +1,21 @@
-@import "../../styles/variables.scss";
+@import "../../../styles/variables.scss";
 
+#place_holder {
+  min-height: 304px;
+  h4 {
+    color: $titleColor;
+    text-align: center;
+  }
+  #loading_spinner {
+    color: $titleColor;
+  }
+}
 #free_champions_container {
   margin-top: 20px;
   h5 {
     color: $titleColor;
     font-weight: bold;
-    font-family: $secondaryTitleFont;
+    font-family: $titleColor;
   }
   hr {
     height: 1.5px;

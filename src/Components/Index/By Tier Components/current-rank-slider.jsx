@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { key, proxyurl } from "../../variables";
+import { key, proxyurl } from "../../../variables";
 import Slider from "react-slick";
 import Card from "react-bootstrap/Card";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
@@ -196,7 +196,12 @@ class CurrentRankSlider extends Component {
     if (isLoading) {
       return (
         <div id="loading_container">
-          <FontAwesomeIcon id="loading_spinner" icon={faSpinner} spin />
+          <FontAwesomeIcon
+            id="loading_spinner"
+            style={{ color: "#bdf2ef" }}
+            icon={faSpinner}
+            spin
+          />
           <h4>Retrieving Data</h4>
         </div>
       );

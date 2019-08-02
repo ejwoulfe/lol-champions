@@ -1,0 +1,73 @@
+@import "../../styles/variables.scss";
+#champions_list_container {
+  #title {
+    padding-top: 40px;
+    color: $titleColor;
+    font-weight: bold;
+    font-family: $titleColor;
+    text-align: center;
+  }
+  hr {
+    height: 1.5px;
+    opacity: 0.25;
+    border: 0px;
+    background-image: linear-gradient(95deg, #1affff, transparent);
+    margin-bottom: 60px;
+  }
+}
+#champions_list {
+  //background-color: #1e2035;
+  margin-top: 60px;
+  animation-delay: 1s;
+  animation: slideAndFade 3s ease-in both;
+  margin-top: 20px;
+
+  #champion_link {
+    text-align: center;
+
+    padding: 10px;
+    #img_container {
+      position: relative;
+      img {
+        text-decoration: none;
+        border: 2px solid transparent;
+        display: block;
+        margin: 0px auto;
+        max-width: 100%;
+      }
+      .overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transition: background-color 1s ease;
+        bottom: 0;
+      }
+    }
+    #champion_name {
+      color: $titleColor;
+    }
+    &:hover {
+      text-decoration: none;
+      #champion_name {
+        font-weight: 500;
+      }
+      .overlay {
+        background-color: rgba($color: #90bec2, $alpha: 0.25);
+        border: 2px solid #90bec2;
+      }
+    }
+  }
+}
+.row {
+  justify-content: space-evenly;
+}
+
+@keyframes slideAndFade {
+  from {
+    margin-top: 100%;
+  }
+
+  to {
+    margin-top: 0%;
+  }
+}

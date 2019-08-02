@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import ByTier from "./by-tier-ranked-emblems";
 import CurrentRankSlider from "./current-rank-slider";
 import CurrentRankInformation from "./current-rank-information";
-import Iron from "../../Assets/Ranked Icons/Emblem_Iron.png";
-import Bronze from "../../Assets/Ranked Icons/Emblem_Bronze.png";
-import Silver from "../../Assets/Ranked Icons/Emblem_Silver.png";
-import Gold from "../../Assets/Ranked Icons/Emblem_Gold.png";
-import Platinum from "../../Assets/Ranked Icons/Emblem_Platinum.png";
-import Diamond from "../../Assets/Ranked Icons/Emblem_Diamond.png";
-import Master from "../../Assets/Ranked Icons/Emblem_Master.png";
-import Grandmaster from "../../Assets/Ranked Icons/Emblem_Grandmaster.png";
-import Challenger from "../../Assets/Ranked Icons/Emblem_Challenger.png";
+import Iron from "../../../Assets/Ranked Icons/Emblem_Iron.png";
+import Bronze from "../../../Assets/Ranked Icons/Emblem_Bronze.png";
+import Silver from "../../../Assets/Ranked Icons/Emblem_Silver.png";
+import Gold from "../../../Assets/Ranked Icons/Emblem_Gold.png";
+import Platinum from "../../../Assets/Ranked Icons/Emblem_Platinum.png";
+import Diamond from "../../../Assets/Ranked Icons/Emblem_Diamond.png";
+import Master from "../../../Assets/Ranked Icons/Emblem_Master.png";
+import Grandmaster from "../../../Assets/Ranked Icons/Emblem_Grandmaster.png";
+import Challenger from "../../../Assets/Ranked Icons/Emblem_Challenger.png";
 class ByTierContainer extends Component {
   constructor(props) {
     super(props);
@@ -55,23 +55,25 @@ class ByTierContainer extends Component {
   render() {
     if (this.state.isShowing) {
       return (
-        <ByTier
-          handleTransition={this.handleTransition}
-          lowTiers={this.state.lowTiers}
-          midTiers={this.state.midTiers}
-          highTiers={this.state.highTiers}
-        />
+        <div id="by_tier_container">
+          <ByTier
+            handleTransition={this.handleTransition}
+            lowTiers={this.state.lowTiers}
+            midTiers={this.state.midTiers}
+            highTiers={this.state.highTiers}
+          />
+        </div>
       );
     } else {
       return (
-        <React.Fragment>
+        <div id="by_tier_container">
           <CurrentRankInformation
             tier={this.state.tierClickedOn}
             image={this.state.tierImage}
             handleTransition={this.handleTransition}
           />
           <CurrentRankSlider tier={this.state.tierClickedOn} />
-        </React.Fragment>
+        </div>
       );
     }
   }
