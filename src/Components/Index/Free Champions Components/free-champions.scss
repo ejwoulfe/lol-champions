@@ -48,16 +48,18 @@
     }
     h4 {
       letter-spacing: 0.15px;
-
+      vertical-align: middle;
       font-family: $titleFont;
-
       position: absolute;
-      bottom: 10px;
+      bottom: 0;
       color: $titleColor;
       font-weight: bold;
       width: 100%;
       text-align: center;
       background-color: rgba(0, 0, 0, 0.7);
+      height: 25%;
+      font-size: calc(12px + (24 - 12) * ((100vw - 300px) / (1600 - 300)));
+      margin-bottom: 0px;
     }
   }
 }

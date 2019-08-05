@@ -8,6 +8,8 @@
 #api keys
 .env
 
+#Code Coutner
+.VSCodeCounter
 # testing
 /coverage
 
