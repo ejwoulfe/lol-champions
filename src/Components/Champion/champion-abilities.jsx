@@ -17,8 +17,12 @@ class ChampionAbilities extends Component {
                 trigger="click"
                 placement="bottom"
                 overlay={
-                  <AbilityPreview spellinfo={this.props.championPassive} />
+                  <AbilityPreview
+                    spellinfo={this.props.championPassive}
+                    type="passive"
+                  />
                 }
+                rootClose
               >
                 <img
                   src={
@@ -38,6 +42,7 @@ class ChampionAbilities extends Component {
                 overlay={
                   <AbilityPreview spellinfo={this.props.championAbilities[0]} />
                 }
+                rootClose
               >
                 <img
                   src={
@@ -57,6 +62,7 @@ class ChampionAbilities extends Component {
                 overlay={
                   <AbilityPreview spellinfo={this.props.championAbilities[1]} />
                 }
+                rootClose
               >
                 <img
                   src={
@@ -76,6 +82,7 @@ class ChampionAbilities extends Component {
                 overlay={
                   <AbilityPreview spellinfo={this.props.championAbilities[2]} />
                 }
+                rootClose
               >
                 <img
                   src={
@@ -95,6 +102,7 @@ class ChampionAbilities extends Component {
                 overlay={
                   <AbilityPreview spellinfo={this.props.championAbilities[3]} />
                 }
+                rootClose
               >
                 <img
                   src={
