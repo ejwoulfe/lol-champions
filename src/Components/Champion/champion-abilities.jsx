@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import AbilityPreview from "./ability-preview";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 class ChampionAbilities extends Component {
   state = {};
 
@@ -9,7 +10,6 @@ class ChampionAbilities extends Component {
     return (
       <div id="champion_abilities_container">
         <h1> Abilities</h1>
-        <hr />
         <div id="ability_icons_container">
           <div id="passive">
             <span className="content-border">
@@ -17,8 +17,12 @@ class ChampionAbilities extends Component {
                 trigger="click"
                 placement="bottom"
                 overlay={
-                  <AbilityPreview spellinfo={this.props.championPassive} />
+                  <AbilityPreview
+                    spellinfo={this.props.championPassive}
+                    type="passive"
+                  />
                 }
+                rootClose
               >
                 <img
                   src={
@@ -38,6 +42,7 @@ class ChampionAbilities extends Component {
                 overlay={
                   <AbilityPreview spellinfo={this.props.championAbilities[0]} />
                 }
+                rootClose
               >
                 <img
                   src={
@@ -57,6 +62,7 @@ class ChampionAbilities extends Component {
                 overlay={
                   <AbilityPreview spellinfo={this.props.championAbilities[1]} />
                 }
+                rootClose
               >
                 <img
                   src={
@@ -76,6 +82,7 @@ class ChampionAbilities extends Component {
                 overlay={
                   <AbilityPreview spellinfo={this.props.championAbilities[2]} />
                 }
+                rootClose
               >
                 <img
                   src={
@@ -95,6 +102,7 @@ class ChampionAbilities extends Component {
                 overlay={
                   <AbilityPreview spellinfo={this.props.championAbilities[3]} />
                 }
+                rootClose
               >
                 <img
                   src={
@@ -107,6 +115,11 @@ class ChampionAbilities extends Component {
             </span>
           </div>
         </div>
+        <div id="alert">
+          <FontAwesomeIcon icon={faArrowUp} id="alert_arrow" />
+          <h4>Click an icon to see the ability description!</h4>
+        </div>
+        <hr />
       </div>
     );
   }
