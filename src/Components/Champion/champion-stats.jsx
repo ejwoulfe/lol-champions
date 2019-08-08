@@ -13,7 +13,7 @@ class ChampionStats extends Component {
     return (
       <div id="champion_stats_container">
         <h1>Stats</h1>
-        <hr />
+
         <div id="stats">
           <ul>
             <h6>
@@ -103,6 +103,7 @@ class ChampionStats extends Component {
             <li>{this.props.championStats.movespeed} base</li>
           </ul>
         </div>
+        <hr />
       </div>
     );
   }
