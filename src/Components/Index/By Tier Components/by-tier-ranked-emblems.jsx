@@ -9,7 +9,9 @@ import Col from "react-bootstrap/Col";
 function ByTierRankedEmblems(props) {
   const listOfLowTiers = props.lowTiers.map(lowTier => (
     <Col
-      xs={4}
+      md={4}
+      sm={6}
+      xs={12}
       onClick={props.handleTransition}
       key={lowTier.name}
       id={lowTier.name}
@@ -23,7 +25,9 @@ function ByTierRankedEmblems(props) {
     <Col
       className="ranked_emblem"
       id={midTier.name}
-      xs={4}
+      md={4}
+      sm={6}
+      xs={12}
       onClick={props.handleTransition}
       key={midTier.name}
     >
@@ -35,7 +39,9 @@ function ByTierRankedEmblems(props) {
     <Col
       className="ranked_emblem"
       id={highTier.name}
-      xs={4}
+      md={4}
+      sm={6}
+      xs={12}
       onClick={props.handleTransition}
       key={highTier.name}
     >

@@ -7,7 +7,7 @@ class CurrentRankInformation extends Component {
   render() {
     return (
       <div id="current_rank_container">
-        <h5>Most Picked Champions By Tier</h5>
+        <h5 className="container_title">Most Picked Champions By Tier</h5>
         <hr />
         <div id="rank_information">
           <Button onClick={this.props.handleTransition} variant="link">

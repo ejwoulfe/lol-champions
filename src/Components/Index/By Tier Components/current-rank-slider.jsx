@@ -4,15 +4,56 @@ import { key, proxyurl } from "../../../variables";
 import Slider from "react-slick";
 import Card from "react-bootstrap/Card";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 class CurrentRankSlider extends Component {
-  state = {
-    summonerIds: [],
-    accountIds: [],
-    chosenChampionIds: [],
-    championsObjectArray: [],
-    isLoading: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      width: window.innerWidth,
+      summonerIds: [],
+      accountIds: [],
+      chosenChampionIds: [],
+      championsObjectArray: [],
+      isLoading: false
+    };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+  }
+
+  setSliderSettings() {
+    var settings;
+    if (this.state.width < 1000 && this.state.width > 800) {
+      settings = {
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 3
+      };
+    } else if (this.state.width < 800) {
+      settings = {
+        infinite: true,
+        speed: 500,
+        slidesToShow: 2,
+        slidesToScroll: 2
+      };
+    } else {
+      settings = {
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 4
+      };
+    }
+    return settings;
+  }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth });
+    this.setSliderSettings();
+  }
 
   fetchSummonerIds(rank) {
     if (rank === "Master" || rank === "Grandmaster" || rank === "Challenger") {
@@ -189,6 +230,8 @@ class CurrentRankSlider extends Component {
   componentDidMount() {
     this.setState({ isLoading: true });
     this.fetchSummonerIds(this.props.tier);
+    this.updateWindowDimensions();
+    window.addEventListener("resize", this.updateWindowDimensions);
   }
 
   render() {
@@ -206,27 +249,29 @@ class CurrentRankSlider extends Component {
         </div>
       );
     }
-    var settings = {
-      infinite: true,
-      speed: 500,
-      slidesToShow: 4,
-      slidesToScroll: 4
-    };
     let mostPlayedChampions = this.state.championsObjectArray.map(champion => (
       <Card key={champion}>
-        <Card.Img
-          src={
-            "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" +
-            champion.id +
-            "_0.jpg"
-          }
-        />
-        <h4>{champion.name}</h4>
+        <Link
+          variant="link"
+          to={{
+            pathname: "champion/" + champion.name,
+            state: { champion: champion }
+          }}
+        >
+          <Card.Img
+            src={
+              "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" +
+              champion.id +
+              "_0.jpg"
+            }
+          />
+          <h4>{champion.name}</h4>
+        </Link>
       </Card>
     ));
     return (
       <div id="slider_container">
-        <Slider {...settings}>{mostPlayedChampions}</Slider>
+        <Slider {...this.setSliderSettings()}>{mostPlayedChampions}</Slider>
       </div>
     );
   }

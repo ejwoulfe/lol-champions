@@ -15,7 +15,7 @@
   h5 {
     color: $titleColor;
     font-weight: bold;
-    font-family: $titleColor;
+    font-family: $secondaryTitleFont;
   }
   hr {
     height: 1.5px;
@@ -23,6 +23,18 @@
     border: 0px;
     background-image: linear-gradient(95deg, #1affff, transparent);
   }
+}
+.slick-next {
+  right: 22px;
+  z-index: 1;
+}
+.slick-prev {
+  left: 5px;
+  z-index: 1;
+}
+.slick-prev:before,
+.slick-next:before {
+  font-size: 40px;
 }
 .slick-track {
   padding-top: 20px;
