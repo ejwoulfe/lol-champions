@@ -1,3 +1,4 @@
+/* eslint-disable no-eval */
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { key, proxyurl } from "../../../variables";
@@ -27,21 +28,24 @@ class CurrentRankSlider extends Component {
         infinite: true,
         speed: 500,
         slidesToShow: 3,
-        slidesToScroll: 3
+        slidesToScroll: 3,
+        swipe: false
       };
     } else if (this.state.width < 800) {
       settings = {
         infinite: true,
         speed: 500,
         slidesToShow: 2,
-        slidesToScroll: 2
+        slidesToScroll: 2,
+        swipe: false
       };
     } else {
       settings = {
         infinite: true,
         speed: 500,
         slidesToShow: 4,
-        slidesToScroll: 4
+        slidesToScroll: 4,
+        swipe: false
       };
     }
     return settings;

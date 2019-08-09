@@ -7,19 +7,7 @@ class SearchBar extends Component {
   searchButtonClicked() {
     console.log("Clicked.");
   }
-  componentDidMount() {
-    let string = "Aatrox";
-    fetch(
-      "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
-    )
-      .then(result => result.json())
-      .then(result => {
-        if (result.data.hasOwnProperty(string)) {
-          console.log("found");
-          console.log(eval("result.data." + string));
-        }
-      });
-  }
+
   render() {
     let width = {
       flex: 1

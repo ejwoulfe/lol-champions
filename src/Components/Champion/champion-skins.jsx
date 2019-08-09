@@ -36,7 +36,6 @@ class ChampionSkins extends Component {
     ));
   }
   render() {
-    console.log(this.props.championSkins);
     return (
       <div id="champion_skins_container">
         <h1>Skins</h1>

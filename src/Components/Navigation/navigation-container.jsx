@@ -17,6 +17,15 @@ class NavigationBar extends Component {
     };
     this.changeState = this.changeState.bind(this);
   }
+  // componentDidMount() {
+  //   fetch(
+  //     "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
+  //   )
+  //     .then(result => result.json())
+  //     .then(result => {
+  //       console.log(result.data);
+  //     });
+  // }
   componentDidUpdate() {
     if (this.state.clickedTier === true) {
       document
