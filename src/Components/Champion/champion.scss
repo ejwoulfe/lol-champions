@@ -21,10 +21,10 @@
     position: absolute;
     bottom: 0;
 
-    height: 25%;
+    height: 35%;
     h1 {
-      padding-top: calc(10px + (24 - 10) * ((100vw - 300px) / (1900 - 300)));
-      font-size: calc(20px + (65 - 20) * ((100vw - 300px) / (1600 - 300)));
+      padding-top: calc(2px + (15 - 2) * ((100vw - 300px) / (1900 - 300)));
+      font-size: calc(40px + (90 - 40) * ((100vw - 200px) / (1000 - 200)));
     }
     h5 {
       font-size: calc(10px + (20 - 10) * ((100vw - 300px) / (1600 - 300)));
@@ -162,6 +162,8 @@
     max-width: 100%;
     height: auto;
     vertical-align: middle;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #3d3d66;
   }
 }
 @keyframes slideDown {
@@ -172,15 +174,15 @@
     opacity: 1;
   }
 }
-@media (min-width: 1800px) {
+@media (min-width: 2400px) {
   #champion_name_container {
     #name_and_title {
       h1 {
         padding-top: 36px;
-        font-size: 60px;
+        font-size: 120px;
       }
       h5 {
-        font-size: 22px;
+        font-size: 42px;
       }
     }
   }

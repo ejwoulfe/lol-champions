@@ -26,6 +26,9 @@
     #search_icon {
       margin-left: auto;
       margin-right: 10px;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }

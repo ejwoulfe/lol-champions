@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Navbar, Col, Nav } from "react-bootstrap";
+import { Navbar, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 class Logo extends Component {

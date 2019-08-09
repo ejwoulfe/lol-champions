@@ -1,3 +1,4 @@
+/* eslint-disable no-eval */
 import React, { Component } from "react";
 import FreeChampionsSlider from "../Free Champions Components/free-champions-slider";
 import { key, proxyurl } from "../../../variables";

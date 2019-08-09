@@ -9,8 +9,10 @@ class ChampionContainer extends Component {
   state = {
     champion: this.props.champion
   };
+  componentDidMount() {
+    document.getElementById("app").scrollIntoView({ behavior: "smooth" });
+  }
   render() {
-    console.log(this.state.champion);
     return (
       <div id="champion_container">
         <ChampionName

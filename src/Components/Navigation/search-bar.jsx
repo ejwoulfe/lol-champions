@@ -4,6 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 class SearchBar extends Component {
+  searchButtonClicked() {
+    console.log("Clicked.");
+  }
+
   render() {
     let width = {
       flex: 1
@@ -13,7 +17,7 @@ class SearchBar extends Component {
     };
 
     return (
-      <Col md={6} id="search_container" className="col-xs-4">
+      <Col md={6} id="search_container">
         <Form inline style={width} id="bar_and_icon">
           <FormControl
             type="text"
@@ -22,7 +26,11 @@ class SearchBar extends Component {
             style={(width, border)}
             id="search_bar_input"
           />
-          <FontAwesomeIcon id="search_icon" icon={faSearch} />
+          <FontAwesomeIcon
+            id="search_icon"
+            icon={faSearch}
+            onClick={this.searchButtonClicked}
+          />
           {/* <Button variant="outline-success">Search</Button> */}
         </Form>
       </Col>
