@@ -12,6 +12,12 @@ class ChampionContainer extends Component {
   componentDidMount() {
     document.getElementById("app").scrollIntoView({ behavior: "smooth" });
   }
+  componentDidUpdate() {
+    if (this.state.champion !== this.props.champion) {
+      this.setState({ champion: this.props.champion });
+    }
+  }
+
   render() {
     return (
       <div id="champion_container">

@@ -31,6 +31,41 @@
       }
     }
   }
+  #search_suggestions {
+    position: absolute;
+    z-index: 1;
+    width: 89%;
+    top: 30px;
+
+    ul {
+      list-style-type: none;
+      height: auto;
+      overflow-y: scroll;
+      max-height: 300px;
+      padding-left: 0px;
+    }
+    li {
+      background-color: #cfcfcf;
+      // padding-top: 2px;
+      //border-bottom: 2px solid #3d3d66;
+      border-top: 2px solid #3d3d66;
+
+      &:hover {
+        background-color: #7070a0;
+        cursor: pointer;
+      }
+      a {
+        display: block;
+        color: black;
+        font-family: $secondaryTitleFont;
+        letter-spacing: 0.7px;
+      }
+
+      img {
+        width: 15%;
+      }
+    }
+  }
 }
 
 #links_container {

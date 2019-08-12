@@ -1,3 +1,4 @@
+/* eslint-disable no-eval */
 import React, { Component } from "react";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
@@ -12,20 +13,26 @@ class NavigationBar extends Component {
     this.state = {
       logo: "LoL Champions",
       links: [{ name: "champions" }, { name: "by tier" }],
+      championsList: [],
       clickedTier: false,
       clickedHome: false
     };
     this.changeState = this.changeState.bind(this);
   }
-  // componentDidMount() {
-  //   fetch(
-  //     "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
-  //   )
-  //     .then(result => result.json())
-  //     .then(result => {
-  //       console.log(result.data);
-  //     });
-  // }
+  componentDidMount() {
+    fetch(
+      "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
+    )
+      .then(result => result.json())
+      .then(result => {
+        for (var champion in result.data) {
+          let championObject = eval("result.data." + champion);
+          this.setState({
+            championsList: [...this.state.championsList, championObject]
+          });
+        }
+      });
+  }
   componentDidUpdate() {
     if (this.state.clickedTier === true) {
       document
@@ -43,7 +50,7 @@ class NavigationBar extends Component {
           <Logo logo={this.state.logo} />
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <SearchBar />
+            <SearchBar list={this.state.championsList} />
             <Col id="links_container" className="col-sm-4 col-xs-6">
               <Link
                 to="/list"
