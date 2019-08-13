@@ -9,7 +9,7 @@ function ChampionsList(props) {
       key={champion.id}
       id="champion_link"
       to={{
-        pathname: "champion/" + champion.name,
+        pathname: "/champion/" + champion.name,
         state: { champion: champion }
       }}
     >
