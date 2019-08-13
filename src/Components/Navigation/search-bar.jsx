@@ -5,10 +5,32 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 class SearchBar extends Component {
-  state = {
-    searchTerm: "",
-    matchingChampionsFound: []
-  };
+  constructor() {
+    super();
+    this.state = {
+      searchTerm: "",
+      matchingChampionsFound: []
+    };
+    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+  }
+  componentDidMount() {
+    document.addEventListener("mousedown", this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleClickOutside);
+  }
+  setWrapperRef(node) {
+    this.wrapperRef = node;
+  }
+  handleClickOutside(event) {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      document.getElementById("search_suggestions").style.display = "none";
+    } else {
+      document.getElementById("search_suggestions").style.display = "block";
+    }
+  }
   handleSubmit(e) {
     e.preventDefault();
   }
@@ -32,10 +54,18 @@ class SearchBar extends Component {
       });
     }
   };
+  listItemClickedOn() {
+    var x = document.getElementById("search_suggestions");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
 
   render() {
     const listItems = this.state.matchingChampionsFound.map(champion => (
-      <li key={champion.id}>
+      <li key={champion.id} onClick={this.listItemClickedOn}>
         <Link
           variant="link"
           key={champion.id + "list_item"}
@@ -64,7 +94,7 @@ class SearchBar extends Component {
     };
 
     return (
-      <Col md={6} id="search_container">
+      <Col md={6} id="search_container" ref={this.setWrapperRef}>
         <Form
           inline
           style={width}
