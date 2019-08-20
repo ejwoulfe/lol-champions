@@ -10,7 +10,7 @@ class FreeChampions extends Component {
     super();
     this.state = {
       freeChampionIds: [],
-      championsObjectArray: [],
+      freeChampionsList: [],
       isLoading: false
     };
     this._isMounted = false;
@@ -18,26 +18,38 @@ class FreeChampions extends Component {
   componentWillUnmount() {
     this._isMounted = false;
   }
+  componentWillMount() {
+    if (sessionStorage.hasOwnProperty("freeChampionsList")) {
+      this._isMounted && this.setState({ isLoading: false });
+      sessionStorage.getItem("freeChampionsList") &&
+        this.setState({
+          freeChampionsList: JSON.parse(
+            sessionStorage.getItem("freeChampionsList")
+          )
+        });
+    }
+  }
   componentDidMount() {
     this._isMounted = true;
-    this.setState({ isLoading: true });
 
-    Promise.all([
-      fetch(
-        proxyurl +
-          "https://na1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=" +
-          key
-      ),
-      fetch(
-        proxyurl +
-          "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
-      )
-    ])
-      .then(([res1, res2]) => {
-        return Promise.all([res1.json(), res2.json()]);
-      })
-      .then(
-        ([result1, result2]) => {
+    if (!sessionStorage.getItem("freeChampionsList")) {
+      this.setState({ isLoading: true });
+      Promise.all([
+        fetch(
+          proxyurl +
+            "https://na1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=" +
+            key
+        ),
+
+        fetch(
+          proxyurl +
+            "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
+        )
+      ])
+        .then(([res1, res2]) => {
+          return Promise.all([res1.json(), res2.json()]);
+        })
+        .then(([result1, result2]) => {
           this._isMounted &&
             this.setState({
               freeChampionIds: result1.freeChampionIds
@@ -53,8 +65,8 @@ class FreeChampions extends Component {
             if (tempArr.includes(currentKey)) {
               this._isMounted &&
                 this.setState({
-                  championsObjectArray: [
-                    ...this.state.championsObjectArray,
+                  freeChampionsList: [
+                    ...this.state.freeChampionsList,
                     championObject
                   ]
                 });
@@ -67,22 +79,14 @@ class FreeChampions extends Component {
             }
           }
           this._isMounted && this.setState({ isLoading: false });
-        }
-        // error => {
-        //   alert("Error");
-        // }
-      );
-
-    // Note: it's important to handle errors here
-    // instead of a catch() block so that we don't swallow
-    // exceptions from actual bugs in components.
-    // error => {
-    //   alert("Error");
-    // }
-
-    // Note: it's important to handle errors here
-    // instead of a catch() block so that we don't swallow
-    // exceptions from actual bugs in components.
+        });
+    }
+  }
+  componentWillUpdate(nextProps, nextState) {
+    sessionStorage.setItem(
+      "freeChampionsList",
+      JSON.stringify(nextState.freeChampionsList)
+    );
   }
 
   render() {
@@ -102,7 +106,7 @@ class FreeChampions extends Component {
     }
     return (
       <div id="free_champions_container">
-        <FreeChampionsSlider data={this.state.championsObjectArray} />
+        <FreeChampionsSlider data={this.state.freeChampionsList} />
       </div>
     );
   }
