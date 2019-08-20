@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
+import { proxyurl } from "../../../variables";
 import SearchBar from "./search-bar";
 import Logo from "./logo";
 import "./navigation.scss";
@@ -21,7 +22,8 @@ class NavigationBar extends Component {
   }
   componentDidMount() {
     fetch(
-      "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
+      proxyurl +
+        "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
     )
       .then(result => result.json())
       .then(result => {

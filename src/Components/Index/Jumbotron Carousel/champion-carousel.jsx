@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import "./champion-carousel.scss";
 import Carousel from "react-bootstrap/Carousel";
+import { proxyurl } from "../../../variables";
 
 class ChampionCarousel extends Component {
   state = {
     chosenChampions: [
-      "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/AurelionSol_0.jpg",
-      "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Kaisa_0.jpg",
-      "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Sylas_0.jpg"
+      proxyurl +
+        "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/AurelionSol_0.jpg",
+      proxyurl +
+        "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Kaisa_0.jpg",
+      proxyurl +
+        "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Sylas_0.jpg"
     ],
     isLoading: false
   };

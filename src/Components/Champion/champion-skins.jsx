@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Row from "react-bootstrap/Row";
+import { proxyurl } from "../../variables";
 class ChampionSkins extends Component {
   state = {
     skinsWithoutDefault: []
@@ -14,6 +15,7 @@ class ChampionSkins extends Component {
       <div key={index} className="col-md-4 col-sm-6 col-xs-12 img_container">
         <a
           href={
+            proxyurl +
             "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/" +
             this.props.championName +
             "_" +
@@ -23,6 +25,7 @@ class ChampionSkins extends Component {
         >
           <img
             src={
+              proxyurl +
               "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/" +
               this.props.championName +
               "_" +

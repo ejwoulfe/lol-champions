@@ -1,6 +1,7 @@
 /* eslint-disable no-eval */
 import React, { Component } from "react";
 import ChampionsList from "./champions-list";
+import { proxyurl } from "../../variables";
 
 class ChampionsListContainer extends Component {
   constructor(props) {
@@ -17,7 +18,8 @@ class ChampionsListContainer extends Component {
     this.setState({ isLoading: true });
     if (!localStorage.getItem("championsList")) {
       fetch(
-        "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
+        proxyurl +
+          "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
       )
         .then(res => res.json())
         .then(result => {

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AbilityPreview from "./ability-preview";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { proxyurl } from "../../../variables";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 class ChampionAbilities extends Component {
   state = {};
@@ -26,6 +27,7 @@ class ChampionAbilities extends Component {
               >
                 <img
                   src={
+                    proxyurl +
                     "http://ddragon.leagueoflegends.com/cdn/9.10.1/img/passive/" +
                     this.props.championPassive.image.full
                   }
@@ -46,6 +48,7 @@ class ChampionAbilities extends Component {
               >
                 <img
                   src={
+                    proxyurl +
                     "http://ddragon.leagueoflegends.com/cdn/9.10.1/img/spell/" +
                     this.props.championAbilities[0].image.full
                   }
@@ -66,6 +69,7 @@ class ChampionAbilities extends Component {
               >
                 <img
                   src={
+                    proxyurl +
                     "http://ddragon.leagueoflegends.com/cdn/9.10.1/img/spell/" +
                     this.props.championAbilities[1].image.full
                   }
@@ -86,6 +90,7 @@ class ChampionAbilities extends Component {
               >
                 <img
                   src={
+                    proxyurl +
                     "http://ddragon.leagueoflegends.com/cdn/9.10.1/img/spell/" +
                     this.props.championAbilities[2].image.full
                   }
@@ -106,6 +111,7 @@ class ChampionAbilities extends Component {
               >
                 <img
                   src={
+                    proxyurl +
                     "http://ddragon.leagueoflegends.com/cdn/9.10.1/img/spell/" +
                     this.props.championAbilities[3].image.full
                   }
