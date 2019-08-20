@@ -9,10 +9,12 @@ class ChampionsListContainer extends Component {
     this.state = { championsList: [] };
   }
   componentWillMount() {
-    localStorage.getItem("championsList") &&
-      this.setState({
-        championsList: JSON.parse(localStorage.getItem("championsList"))
-      });
+    if (localStorage.getItem("championsList")) {
+      localStorage.getItem("championsList") &&
+        this.setState({
+          championsList: JSON.parse(localStorage.getItem("championsList"))
+        });
+    }
   }
   componentDidMount() {
     this.setState({ isLoading: true });
