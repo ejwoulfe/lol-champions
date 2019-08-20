@@ -2,7 +2,7 @@ import React from "react";
 import "./champions-list.scss";
 import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
-import { proxyurl } from "../../variables";
+
 function ChampionsList(props) {
   const listOfChampions = props.list.map(champion => (
     <Link
@@ -19,7 +19,6 @@ function ChampionsList(props) {
           id={champion.id}
           alt={champion.name}
           src={
-            proxyurl +
             "http://ddragon.leagueoflegends.com/cdn/9.13.1/img/champion/" +
             champion.id +
             ".png"

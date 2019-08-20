@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { proxyurl } from "../../variables";
 
 class ChampionName extends Component {
   render() {
@@ -7,7 +6,6 @@ class ChampionName extends Component {
       <div id="champion_name_container">
         <img
           src={
-            proxyurl +
             "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" +
             this.props.championID +
             "_0.jpg"

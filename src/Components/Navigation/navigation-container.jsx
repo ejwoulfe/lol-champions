@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
-import { proxyurl } from "../../../variables";
+import { proxyurl } from "../../variables";
 import SearchBar from "./search-bar";
 import Logo from "./logo";
 import "./navigation.scss";

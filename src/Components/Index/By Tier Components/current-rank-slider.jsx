@@ -265,7 +265,6 @@ class CurrentRankSlider extends Component {
         >
           <Card.Img
             src={
-              proxyurl +
               "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" +
               champion.id +
               "_0.jpg"
