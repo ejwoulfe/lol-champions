@@ -21,19 +21,27 @@ class NavigationBar extends Component {
     this.changeState = this.changeState.bind(this);
   }
   componentDidMount() {
-    fetch(
-      proxyurl +
-        "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
-    )
-      .then(result => result.json())
-      .then(result => {
-        for (var champion in result.data) {
-          let championObject = eval("result.data." + champion);
-          this.setState({
-            championsList: [...this.state.championsList, championObject]
-          });
-        }
-      });
+    if (!localStorage.getItem("championsList")) {
+      fetch(
+        proxyurl +
+          "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
+      )
+        .then(result => result.json())
+        .then(result => {
+          for (var champion in result.data) {
+            let championObject = eval("result.data." + champion);
+            this.setState({
+              championsList: [...this.state.championsList, championObject]
+            });
+          }
+        });
+    }
+  }
+  componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem(
+      "championsList",
+      JSON.stringify(nextState.championsList)
+    );
   }
   componentDidUpdate() {
     if (this.state.clickedTier === true) {

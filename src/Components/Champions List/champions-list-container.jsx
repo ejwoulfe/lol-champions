@@ -10,7 +10,6 @@ class ChampionsListContainer extends Component {
   }
   componentWillMount() {
     if (localStorage.hasOwnProperty("championsList")) {
-      console.log("accessing storage");
       localStorage.getItem("championsList") &&
         this.setState({
           championsList: JSON.parse(localStorage.getItem("championsList"))
@@ -34,12 +33,6 @@ class ChampionsListContainer extends Component {
           }
         });
     }
-  }
-  componentWillUpdate(nextProps, nextState) {
-    localStorage.setItem(
-      "championsList",
-      JSON.stringify(nextState.championsList)
-    );
   }
 
   render() {
