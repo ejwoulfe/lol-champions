@@ -9,7 +9,8 @@ class ChampionsListContainer extends Component {
     this.state = { championsList: [] };
   }
   componentWillMount() {
-    if (localStorage.getItem("championsList")) {
+    if (localStorage.hasOwnProperty("championsList")) {
+      console.log("accessing storage");
       localStorage.getItem("championsList") &&
         this.setState({
           championsList: JSON.parse(localStorage.getItem("championsList"))
