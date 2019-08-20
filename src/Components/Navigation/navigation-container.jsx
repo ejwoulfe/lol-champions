@@ -20,6 +20,14 @@ class NavigationBar extends Component {
     };
     this.changeState = this.changeState.bind(this);
   }
+  componentWillMount() {
+    if (localStorage.hasOwnProperty("championsList")) {
+      localStorage.getItem("championsList") &&
+        this.setState({
+          championsList: JSON.parse(localStorage.getItem("championsList"))
+        });
+    }
+  }
   componentDidMount() {
     if (!localStorage.getItem("championsList")) {
       fetch(
