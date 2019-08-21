@@ -20,6 +20,8 @@ class ChampionSkins extends Component {
             item.num +
             ".jpg"
           }
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <img
             src={
