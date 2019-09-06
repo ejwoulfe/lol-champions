@@ -21,7 +21,7 @@ class ChampionsListContainer extends Component {
     if (!localStorage.getItem("championsList")) {
       fetch(
         proxyurl +
-          "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
+          "https://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
       )
         .then(res => res.json())
         .then(result => {

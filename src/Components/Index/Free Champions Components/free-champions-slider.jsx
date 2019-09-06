@@ -63,7 +63,7 @@ class FreeChampionsSlider extends Component {
         >
           <Card.Img
             src={
-              "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" +
+              "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/" +
               champion.id +
               "_0.jpg"
             }

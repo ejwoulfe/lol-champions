@@ -6,7 +6,7 @@ class ChampionName extends Component {
       <div id="champion_name_container">
         <img
           src={
-            "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" +
+            "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/" +
             this.props.championID +
             "_0.jpg"
           }
