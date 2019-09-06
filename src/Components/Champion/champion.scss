@@ -20,14 +20,13 @@
     width: 100%;
     position: absolute;
     bottom: 0;
-
-    height: 35%;
     h1 {
       padding-top: calc(2px + (15 - 2) * ((100vw - 300px) / (1900 - 300)));
       font-size: calc(40px + (90 - 40) * ((100vw - 200px) / (1000 - 200)));
     }
     h5 {
       font-size: calc(10px + (20 - 10) * ((100vw - 300px) / (1600 - 300)));
+      margin-bottom: 20px;
     }
   }
 }
