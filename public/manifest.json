@@ -1,5 +1,12 @@
 {
   "short_name": "LoL Champions",
   "start_url": "/home",
-  "display": "standalone"
+  "display": "standalone",
+  "icon": [
+    {
+      "src": "/src/Assets/lol_champions_icon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ]
 }
