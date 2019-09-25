@@ -1,4 +1,3 @@
-/* eslint-disable no-eval */
 import React, { Component } from "react";
 import FreeChampionsSlider from "../Free Champions Components/free-champions-slider";
 import { key, proxyurl } from "../../../variables";
@@ -56,9 +55,10 @@ class FreeChampions extends Component {
             });
 
           let tempArr = [...this.state.freeChampionIds];
-          console.log(result2);
+
           for (var champion in result2.data) {
-            let championObject = eval("result2.data." + champion);
+            let championObject = result2.data[champion];
+
             let currentKey = Number(championObject.key);
             let keyIndex = tempArr.indexOf(currentKey);
 

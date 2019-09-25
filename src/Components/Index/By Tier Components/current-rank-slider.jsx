@@ -1,4 +1,3 @@
-/* eslint-disable no-eval */
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { key, proxyurl } from "../../../variables";
@@ -210,7 +209,7 @@ class CurrentRankSlider extends Component {
       .then(result => {
         let tempArr = [...this.state.chosenChampionIds];
         for (var champion in result.data) {
-          let championObject = eval("result.data." + champion);
+          let championObject = result.data[champion];
           let currentKey = Number(championObject.key);
           let keyIndex = tempArr.indexOf(currentKey);
 

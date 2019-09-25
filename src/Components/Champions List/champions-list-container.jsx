@@ -1,4 +1,3 @@
-/* eslint-disable no-eval */
 import React, { Component } from "react";
 import ChampionsList from "./champions-list";
 import { proxyurl } from "../../variables";
@@ -26,7 +25,7 @@ class ChampionsListContainer extends Component {
         .then(res => res.json())
         .then(result => {
           for (var champion in result.data) {
-            var champObject = eval("result.data." + champion);
+            var champObject = result.data[champion];
             this.setState({
               championsList: [...this.state.championsList, champObject]
             });

@@ -1,4 +1,3 @@
-/* eslint-disable no-eval */
 import React, { Component } from "react";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
@@ -37,7 +36,7 @@ class NavigationBar extends Component {
         .then(result => result.json())
         .then(result => {
           for (var champion in result.data) {
-            let championObject = eval("result.data." + champion);
+            let championObject = result.data[champion];
             this.setState({
               championsList: [...this.state.championsList, championObject]
             });
