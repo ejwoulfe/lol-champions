@@ -56,7 +56,7 @@ class FreeChampions extends Component {
             });
 
           let tempArr = [...this.state.freeChampionIds];
-
+          console.log(result2);
           for (var champion in result2.data) {
             let championObject = eval("result2.data." + champion);
             let currentKey = Number(championObject.key);
