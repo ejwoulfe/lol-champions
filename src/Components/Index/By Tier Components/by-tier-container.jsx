@@ -18,6 +18,7 @@ class ByTierContainer extends Component {
       isShowing: true,
       tierClickedOn: "None",
       tierImage: "",
+      tierColor: "",
 
       lowTiers: [
         { name: "Iron", image: Iron, style: { color: "#A9A5A4" } },
@@ -45,7 +46,7 @@ class ByTierContainer extends Component {
   handleTransition(e) {
     this.setState({ isShowing: !this.state.isShowing });
     this.setState({ tierClickedOn: e.currentTarget.id });
-
+    this.setState({ tierColor: e.currentTarget.childNodes[1].style.color });
     this.setState({ tierImage: e.currentTarget.firstElementChild.src });
     document
       .getElementById("by_tier_container")
@@ -69,6 +70,7 @@ class ByTierContainer extends Component {
         <div id="by_tier_container">
           <CurrentRankInformation
             tier={this.state.tierClickedOn}
+            color={this.state.tierColor}
             image={this.state.tierImage}
             handleTransition={this.handleTransition}
           />

@@ -15,7 +15,7 @@ class CurrentRankInformation extends Component {
               <FontAwesomeIcon id="back_arrow" icon={faArrowLeft} />
             </span>
           </Button>
-          <h1>{this.props.tier}</h1>
+          <h1 style={{ color: this.props.color }}>{this.props.tier}</h1>
           <img
             src={this.props.image}
             alt="current rank emblem"
