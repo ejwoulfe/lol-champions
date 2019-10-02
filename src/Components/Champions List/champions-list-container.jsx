@@ -16,7 +16,7 @@ class ChampionsListContainer extends Component {
     }
   }
   componentDidMount() {
-    this.setState({ isLoading: true });
+   
     if (!localStorage.getItem("championsList")) {
       fetch(
         proxyurl +
