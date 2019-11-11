@@ -83,10 +83,12 @@ class FreeChampions extends Component {
     }
   }
   componentWillUpdate(nextProps, nextState) {
-    sessionStorage.setItem(
-      "freeChampionsList",
-      JSON.stringify(nextState.freeChampionsList)
-    );
+    if (!nextState.freeChampionsList.length === 0) {
+      sessionStorage.setItem(
+        "freeChampionsList",
+        JSON.stringify(nextState.freeChampionsList)
+      );
+    }
   }
 
   render() {

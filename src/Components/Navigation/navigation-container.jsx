@@ -33,14 +33,21 @@ class NavigationBar extends Component {
         proxyurl +
           "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
       )
-        .then(result => result.json())
-        .then(result => {
-          for (var champion in result.data) {
-            let championObject = result.data[champion];
-            this.setState({
-              championsList: [...this.state.championsList, championObject]
-            });
-          }
+        .then(response => {
+          response.json().then(result => {
+            for (var champion in result.data) {
+              let championObject = result.data[champion];
+              this.setState({
+                championsList: [...this.state.championsList, championObject]
+              });
+            }
+          });
+        })
+        .catch(function(err) {
+          window.alert(
+            "Something went wrong fetching data. The service may be down. Try again later." +
+              err
+          );
         });
     }
   }
