@@ -3,8 +3,8 @@ import ChampionsList from "./champions-list";
 import { proxyurl } from "../../variables";
 
 class ChampionsListContainer extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = { championsList: [] };
   }
   componentWillMount() {
@@ -16,16 +16,15 @@ class ChampionsListContainer extends Component {
     }
   }
   componentDidMount() {
-   
     if (!localStorage.getItem("championsList")) {
       fetch(
         proxyurl +
           "https://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
       )
-        .then(res => res.json())
+        .then(result => result.json())
         .then(result => {
-          for (var champion in result.data) {
-            var champObject = result.data[champion];
+          for (let champion in result.data) {
+            let champObject = result.data[champion];
             this.setState({
               championsList: [...this.state.championsList, champObject]
             });

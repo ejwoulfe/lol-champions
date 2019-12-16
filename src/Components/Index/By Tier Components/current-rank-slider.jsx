@@ -21,7 +21,7 @@ class CurrentRankSlider extends Component {
   }
 
   setSliderSettings() {
-    var settings;
+    let settings;
     if (this.state.width < 1000 && this.state.width > 800) {
       settings = {
         infinite: true,
@@ -82,7 +82,7 @@ class CurrentRankSlider extends Component {
           return result.json();
         })
         .then(result => {
-          for (var index = 0; index < 20; index++) {
+          for (let index = 0; index < 20; index++) {
             this.setState({
               summonerIds: [
                 ...this.state.summonerIds,
@@ -97,7 +97,7 @@ class CurrentRankSlider extends Component {
           return result.json();
         })
         .then(result => {
-          for (var index = 0; index < 20; index++) {
+          for (let index = 0; index < 20; index++) {
             this.setState({
               summonerIds: [...this.state.summonerIds, result[index].summonerId]
             });
@@ -109,7 +109,7 @@ class CurrentRankSlider extends Component {
 
   async fetchAccountIds(summonerIds) {
     let urls = [];
-    for (var ids in summonerIds) {
+    for (let ids in summonerIds) {
       urls.push(
         proxyurl +
           "https://na1.api.riotgames.com/lol/summoner/v4/summoners/" +
@@ -154,7 +154,7 @@ class CurrentRankSlider extends Component {
           })
 
           .then(result => {
-            for (var i = 0; i < result.matches.length; i++) {
+            for (let i = 0; i < result.matches.length; i++) {
               let championID = result.matches[i].champion;
 
               if (m.has(championID)) {
@@ -166,8 +166,8 @@ class CurrentRankSlider extends Component {
           })
       )
     );
-    var occurenceArray = Array.from(m.values());
-    var topTenValues = occurenceArray.sort((a, b) => b - a).slice(0, 16);
+    let occurenceArray = Array.from(m.values());
+    let topTenValues = occurenceArray.sort((a, b) => b - a).slice(0, 16);
 
     this.getSliderChampionIds(m, topTenValues);
   }
@@ -180,7 +180,7 @@ class CurrentRankSlider extends Component {
   getSliderChampionIds(map, topTenArray) {
     let tempArr = [];
     let count = 0;
-    for (var i = 0; i < topTenArray.length; i++) {
+    for (let i = 0; i < topTenArray.length; i++) {
       if (tempArr.includes(topTenArray.indexOf(topTenArray[i]))) {
         count += 1;
       } else {
@@ -208,7 +208,7 @@ class CurrentRankSlider extends Component {
       .then(res => res.json())
       .then(result => {
         let tempArr = [...this.state.chosenChampionIds];
-        for (var champion in result.data) {
+        for (let champion in result.data) {
           let championObject = result.data[champion];
           let currentKey = Number(championObject.key);
           let keyIndex = tempArr.indexOf(currentKey);
@@ -256,7 +256,7 @@ class CurrentRankSlider extends Component {
     let mostPlayedChampions = this.state.championsObjectArray.map(champion => (
       <Card key={champion}>
         <Link
-          variant="link"
+          letiant="link"
           to={{
             pathname: "champion/" + champion.name,
             state: { champion: champion }
