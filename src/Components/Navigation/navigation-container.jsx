@@ -19,44 +19,35 @@ class NavigationBar extends Component {
     };
     this.changeState = this.changeState.bind(this);
   }
-  componentWillMount() {
-    if (localStorage.hasOwnProperty("championsList")) {
-      localStorage.getItem("championsList") &&
-        this.setState({
-          championsList: JSON.parse(localStorage.getItem("championsList"))
-        });
-    }
-  }
+
   componentDidMount() {
-    if (!localStorage.getItem("championsList")) {
-      fetch(
-        proxyurl +
-          "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
-      )
-        .then(response => {
-          response.json().then(result => {
-            for (var champion in result.data) {
-              let championObject = result.data[champion];
-              this.setState({
-                championsList: [...this.state.championsList, championObject]
-              });
-            }
-          });
-        })
-        .catch(function(err) {
-          window.alert(
-            "Something went wrong fetching data. The service may be down. Try again later." +
-              err
-          );
+    fetch(
+      proxyurl +
+        "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
+    )
+      .then(response => {
+        response.json().then(result => {
+          for (var champion in result.data) {
+            let championObject = result.data[champion];
+            this.setState({
+              championsList: [...this.state.championsList, championObject]
+            });
+          }
         });
-    }
+      })
+      .catch(function(err) {
+        window.alert(
+          "Something went wrong fetching data. The service may be down. Try again later." +
+            err
+        );
+      });
   }
-  componentWillUpdate(nextProps, nextState) {
-    localStorage.setItem(
-      "championsList",
-      JSON.stringify(nextState.championsList)
-    );
-  }
+  // componentWillUpdate(nextProps, nextState) {
+  //   localStorage.setItem(
+  //     "championsList",
+  //     JSON.stringify(nextState.championsList)
+  //   );
+  // }
   componentDidUpdate() {
     if (this.state.clickedTier === true) {
       document

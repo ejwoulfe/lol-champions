@@ -7,30 +7,21 @@ class ChampionsListContainer extends Component {
     super();
     this.state = { championsList: [] };
   }
-  componentWillMount() {
-    if (localStorage.hasOwnProperty("championsList")) {
-      localStorage.getItem("championsList") &&
-        this.setState({
-          championsList: JSON.parse(localStorage.getItem("championsList"))
-        });
-    }
-  }
+
   componentDidMount() {
-    if (!localStorage.getItem("championsList")) {
-      fetch(
-        proxyurl +
-          "https://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
-      )
-        .then(result => result.json())
-        .then(result => {
-          for (let champion in result.data) {
-            let champObject = result.data[champion];
-            this.setState({
-              championsList: [...this.state.championsList, champObject]
-            });
-          }
-        });
-    }
+    fetch(
+      proxyurl +
+        "https://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
+    )
+      .then(result => result.json())
+      .then(result => {
+        for (let champion in result.data) {
+          let champObject = result.data[champion];
+          this.setState({
+            championsList: [...this.state.championsList, champObject]
+          });
+        }
+      });
   }
 
   render() {
