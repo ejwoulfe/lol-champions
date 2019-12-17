@@ -79,7 +79,16 @@ class CurrentRankSlider extends Component {
     if (type === "master+") {
       await fetch(fetchURL)
         .then(result => {
-          return result.json();
+          if (!result.ok) {
+            if (result.status === 429) {
+              alert(
+                "Too many requests, the current limits are: \n 20 requests every 1 second and 100 requests every 2 minutes. \n Please try again in a couple of minutes."
+              );
+            }
+            throw new Error(result.status);
+          } else {
+            return result.json();
+          }
         })
         .then(result => {
           for (let index = 0; index < 20; index++) {
@@ -94,7 +103,16 @@ class CurrentRankSlider extends Component {
     } else {
       await fetch(fetchURL)
         .then(result => {
-          return result.json();
+          if (!result.ok) {
+            if (result.status === 429) {
+              alert(
+                "Too many requests, the current limits are: \n 20 requests every 1 second and 100 requests every 2 minutes. \n Please try again in a couple of minutes."
+              );
+            }
+            throw new Error(result.status);
+          } else {
+            return result.json();
+          }
         })
         .then(result => {
           for (let index = 0; index < 20; index++) {
@@ -123,7 +141,16 @@ class CurrentRankSlider extends Component {
       urls.map(url =>
         fetch(url)
           .then(result => {
-            return result.json();
+            if (!result.ok) {
+              if (result.status === 429) {
+                alert(
+                  "Too many requests, the current limits are: \n 20 requests every 1 second and 100 requests every 2 minutes. \n Please try again in a couple of minutes."
+                );
+              }
+              throw new Error(result.status);
+            } else {
+              return result.json();
+            }
           })
 
           .then(result => {
@@ -150,7 +177,16 @@ class CurrentRankSlider extends Component {
             key
         )
           .then(result => {
-            return result.json();
+            if (!result.ok) {
+              if (result.status === 429) {
+                alert(
+                  "Too many requests, the current limits are: \n 20 requests every 1 second and 100 requests every 2 minutes. \n Please try again in a couple of minutes."
+                );
+              }
+              throw new Error(result.status);
+            } else {
+              return result.json();
+            }
           })
 
           .then(result => {
@@ -205,7 +241,18 @@ class CurrentRankSlider extends Component {
       proxyurl +
         "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
     )
-      .then(res => res.json())
+      .then(result => {
+        if (!result.ok) {
+          if (result.status === 429) {
+            alert(
+              "Too many requests, the current limits are: \n 20 requests every 1 second and 100 requests every 2 minutes. \n Please try again in a couple of minutes."
+            );
+          }
+          throw new Error(result.status);
+        } else {
+          return result.json();
+        }
+      })
       .then(result => {
         let chosenIDs = [...this.state.chosenChampionIds];
         for (let champion in result.data) {
@@ -229,6 +276,7 @@ class CurrentRankSlider extends Component {
           }
         }
       });
+
     this.setState({ isLoading: false });
   }
   componentDidMount() {

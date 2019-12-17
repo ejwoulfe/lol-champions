@@ -20,7 +20,7 @@ class ChampionCarousel extends Component {
       return (
         <div id="carousel_container">
           <div id="overlay">
-            <h1>Welcome to LoL Champions!</h1>
+            <h1>LoL Champions</h1>
           </div>
           <Carousel>
             <Carousel.Item>
