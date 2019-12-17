@@ -33,6 +33,7 @@ class FreeChampions extends Component {
 
     if (!sessionStorage.getItem("freeChampionsList")) {
       this.setState({ isLoading: true });
+
       Promise.all([
         fetch(
           proxyurl +
@@ -79,15 +80,11 @@ class FreeChampions extends Component {
             }
           }
           this._isMounted && this.setState({ isLoading: false });
+          sessionStorage.setItem(
+            "freeChampionsList",
+            JSON.stringify(this.state.freeChampionsList)
+          );
         });
-    }
-  }
-  componentWillUpdate(nextProps, nextState) {
-    if (!nextState.freeChampionsList.length === 0) {
-      sessionStorage.setItem(
-        "freeChampionsList",
-        JSON.stringify(nextState.freeChampionsList)
-      );
     }
   }
 
