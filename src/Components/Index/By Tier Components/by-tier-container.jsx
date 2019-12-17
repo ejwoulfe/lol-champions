@@ -41,6 +41,7 @@ class ByTierContainer extends Component {
       ]
     };
     this.handleTransition = this.handleTransition.bind(this);
+    this.handleBackTransition = this.handleBackTransition.bind(this);
   }
 
   handleTransition(e) {
@@ -48,6 +49,12 @@ class ByTierContainer extends Component {
     this.setState({ tierClickedOn: e.currentTarget.id });
     this.setState({ tierColor: e.currentTarget.childNodes[1].style.color });
     this.setState({ tierImage: e.currentTarget.firstElementChild.src });
+    document
+      .getElementById("by_tier_container")
+      .scrollIntoView({ behavior: "smooth" });
+  }
+  handleBackTransition(e) {
+    this.setState({ isShowing: !this.state.isShowing });
     document
       .getElementById("by_tier_container")
       .scrollIntoView({ behavior: "smooth" });
@@ -72,7 +79,7 @@ class ByTierContainer extends Component {
             tier={this.state.tierClickedOn}
             color={this.state.tierColor}
             image={this.state.tierImage}
-            handleTransition={this.handleTransition}
+            handleTransition={this.handleBackTransition}
           />
           <CurrentRankSlider tier={this.state.tierClickedOn} />
         </div>

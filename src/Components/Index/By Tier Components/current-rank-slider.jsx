@@ -178,15 +178,15 @@ class CurrentRankSlider extends Component {
     return keys[occurence];
   }
   getSliderChampionIds(map, topTenArray) {
-    let tempArr = [];
+    let topTenChampIDs = [];
     let count = 0;
     for (let i = 0; i < topTenArray.length; i++) {
-      if (tempArr.includes(topTenArray.indexOf(topTenArray[i]))) {
+      if (topTenChampIDs.includes(topTenArray.indexOf(topTenArray[i]))) {
         count += 1;
       } else {
         count = 0;
       }
-      tempArr.push(topTenArray.indexOf(topTenArray[i]));
+      topTenChampIDs.push(topTenArray.indexOf(topTenArray[i]));
       this.setState({
         chosenChampionIds: [
           ...this.state.chosenChampionIds,
@@ -207,13 +207,13 @@ class CurrentRankSlider extends Component {
     )
       .then(res => res.json())
       .then(result => {
-        let tempArr = [...this.state.chosenChampionIds];
+        let chosenIDs = [...this.state.chosenChampionIds];
         for (let champion in result.data) {
           let championObject = result.data[champion];
           let currentKey = Number(championObject.key);
-          let keyIndex = tempArr.indexOf(currentKey);
+          let keyIndex = chosenIDs.indexOf(currentKey);
 
-          if (tempArr.includes(currentKey)) {
+          if (chosenIDs.includes(currentKey)) {
             this.setState({
               championsObjectArray: [
                 ...this.state.championsObjectArray,
@@ -221,10 +221,10 @@ class CurrentRankSlider extends Component {
               ]
             });
 
-            tempArr.splice(keyIndex, 1);
+            chosenIDs.splice(keyIndex, 1);
           }
 
-          if (tempArr.length === 0) {
+          if (chosenIDs.length === 0) {
             break;
           }
         }
