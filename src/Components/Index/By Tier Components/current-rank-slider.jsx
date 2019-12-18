@@ -80,12 +80,7 @@ class CurrentRankSlider extends Component {
       await fetch(fetchURL)
         .then(result => {
           if (!result.ok) {
-            if (result.status === 429) {
-              alert(
-                "Too many requests, the current limits are: \n 20 requests every 1 second and 100 requests every 2 minutes. \n Please try again in a couple of minutes."
-              );
-            }
-            throw new Error(result.status);
+            throw new Error(this.catchErrors(result.status));
           } else {
             return result.json();
           }
@@ -104,12 +99,7 @@ class CurrentRankSlider extends Component {
       await fetch(fetchURL)
         .then(result => {
           if (!result.ok) {
-            if (result.status === 429) {
-              alert(
-                "Too many requests, the current limits are: \n 20 requests every 1 second and 100 requests every 2 minutes. \n Please try again in a couple of minutes."
-              );
-            }
-            throw new Error(result.status);
+            throw new Error(this.catchErrors(result.status));
           } else {
             return result.json();
           }
@@ -138,14 +128,12 @@ class CurrentRankSlider extends Component {
     }
 
     await Promise.all(
-      urls.map(url =>
+      urls.map((url, index) =>
         fetch(url)
           .then(result => {
             if (!result.ok) {
-              if (result.status === 429) {
-                alert(
-                  "Too many requests, the current limits are: \n 20 requests every 1 second and 100 requests every 2 minutes. \n Please try again in a couple of minutes."
-                );
+              if (index === url.length - 1) {
+                this.catchErrors(result.status);
               }
               throw new Error(result.status);
             } else {
@@ -168,7 +156,7 @@ class CurrentRankSlider extends Component {
     const m = new Map();
 
     await Promise.all(
-      accountIds.map(id =>
+      accountIds.map((id, index) =>
         fetch(
           proxyurl +
             "https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/" +
@@ -178,10 +166,8 @@ class CurrentRankSlider extends Component {
         )
           .then(result => {
             if (!result.ok) {
-              if (result.status === 429) {
-                alert(
-                  "Too many requests, the current limits are: \n 20 requests every 1 second and 100 requests every 2 minutes. \n Please try again in a couple of minutes."
-                );
+              if (index === accountIds.length - 1) {
+                this.catchErrors(result.status);
               }
               throw new Error(result.status);
             } else {
@@ -243,12 +229,7 @@ class CurrentRankSlider extends Component {
     )
       .then(result => {
         if (!result.ok) {
-          if (result.status === 429) {
-            alert(
-              "Too many requests, the current limits are: \n 20 requests every 1 second and 100 requests every 2 minutes. \n Please try again in a couple of minutes."
-            );
-          }
-          throw new Error(result.status);
+          throw new Error(this.catchErrors(result.status));
         } else {
           return result.json();
         }
@@ -278,6 +259,17 @@ class CurrentRankSlider extends Component {
       });
 
     this.setState({ isLoading: false });
+  }
+  catchErrors(code) {
+    if (code === 429) {
+      alert(
+        "Too many requests, the current limits are: \n 20 requests every 1 second and 100 requests every 2 minutes. \n Please try again in a couple of minutes."
+      );
+    } else {
+      alert(
+        "There was trouble processing your request. Please try again later."
+      );
+    }
   }
   componentDidMount() {
     this.setState({ isLoading: true });
