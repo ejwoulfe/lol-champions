@@ -132,7 +132,7 @@ class CurrentRankSlider extends Component {
         fetch(url)
           .then(result => {
             if (!result.ok) {
-              if (index === url.length - 1) {
+              if (index === urls.length - 1) {
                 this.catchErrors(result.status);
               }
               throw new Error(result.status);
