@@ -8,6 +8,7 @@
 
 #api keys
 .env
+./src/variables.js
 
 #Code Coutner
 .VSCodeCounter
