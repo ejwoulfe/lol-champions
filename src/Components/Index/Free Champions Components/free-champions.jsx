@@ -41,7 +41,7 @@ class FreeChampions extends Component {
 
         fetch(
 
-          "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
+          "https://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
         )
       ])
         .then(([res1, res2]) => {

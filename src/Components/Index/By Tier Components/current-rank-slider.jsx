@@ -221,7 +221,7 @@ class CurrentRankSlider extends Component {
   }
   getChampionFromID() {
     fetch(
-      "http://ddragon.leagueoflegends.com/cdn/11.5.1/data/en_US/championFull.json"
+      "https://ddragon.leagueoflegends.com/cdn/11.5.1/data/en_US/championFull.json"
     )
       .then(result => {
         if (!result.ok) {
@@ -300,7 +300,7 @@ class CurrentRankSlider extends Component {
         >
           <Card.Img
             src={
-              "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" +
+              "s://ddragon.leagueoflegends.com/cdn/img/champion/splash/" +
               champion.id +
               "_0.jpg"
             }

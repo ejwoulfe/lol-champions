@@ -22,7 +22,7 @@ class NavigationBar extends Component {
   componentDidMount() {
     fetch(
 
-      "http://ddragon.leagueoflegends.com/cdn/11.5.1/data/en_US/championFull.json"
+      "https://ddragon.leagueoflegends.com/cdn/11.5.1/data/en_US/championFull.json"
     )
       .then(response => {
         response.json().then(result => {
