@@ -3,10 +3,11 @@
 /node_modules
 /.pnp
 .pnp.js
-src/variables.js
+
 
 #api keys
 .env
+./variables.js
 
 
 #Code Coutner

@@ -23,7 +23,7 @@ class NavigationBar extends Component {
   componentDidMount() {
     fetch(
       proxyurl +
-        "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
+      "http://ddragon.leagueoflegends.com/cdn/11.5.1/data/en_US/championFull.json"
     )
       .then(response => {
         response.json().then(result => {
@@ -35,10 +35,10 @@ class NavigationBar extends Component {
           }
         });
       })
-      .catch(function(err) {
+      .catch(function (err) {
         window.alert(
           "Something went wrong fetching data. The service may be down. Try again later." +
-            err
+          err
         );
       });
   }

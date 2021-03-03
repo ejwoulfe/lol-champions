@@ -11,7 +11,7 @@ class ChampionsListContainer extends Component {
   componentDidMount() {
     fetch(
       proxyurl +
-        "https://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
+      "http://ddragon.leagueoflegends.com/cdn/11.5.1/data/en_US/championFull.json"
     )
       .then(result => result.json())
       .then(result => {

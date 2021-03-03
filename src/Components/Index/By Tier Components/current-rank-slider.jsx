@@ -120,10 +120,10 @@ class CurrentRankSlider extends Component {
     for (let ids in summonerIds) {
       urls.push(
         proxyurl +
-          "https://na1.api.riotgames.com/lol/summoner/v4/summoners/" +
-          summonerIds[ids] +
-          "?api_key=" +
-          key
+        "https://na1.api.riotgames.com/lol/summoner/v4/summoners/" +
+        summonerIds[ids] +
+        "?api_key=" +
+        key
       );
     }
 
@@ -159,10 +159,10 @@ class CurrentRankSlider extends Component {
       accountIds.map((id, index) =>
         fetch(
           proxyurl +
-            "https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/" +
-            id +
-            "?api_key=" +
-            key
+          "https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/" +
+          id +
+          "?api_key=" +
+          key
         )
           .then(result => {
             if (!result.ok) {
@@ -225,7 +225,7 @@ class CurrentRankSlider extends Component {
   getChampionFromID() {
     fetch(
       proxyurl +
-        "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
+      "http://ddragon.leagueoflegends.com/cdn/11.5.1/data/en_US/championFull.json"
     )
       .then(result => {
         if (!result.ok) {

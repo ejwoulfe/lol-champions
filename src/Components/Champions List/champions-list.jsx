@@ -19,7 +19,7 @@ function ChampionsList(props) {
           id={champion.id}
           alt={champion.name}
           src={
-            "https://ddragon.leagueoflegends.com/cdn/9.13.1/img/champion/" +
+            "https://ddragon.leagueoflegends.com/cdn/11.5.1/img/champion/" +
             champion.id +
             ".png"
           }
