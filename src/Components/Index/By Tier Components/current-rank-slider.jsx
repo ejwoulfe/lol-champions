@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { key, proxyurl } from "../../../variables";
 import Slider from "react-slick";
 import Card from "react-bootstrap/Card";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
@@ -64,14 +63,14 @@ class CurrentRankSlider extends Component {
         "https://na1.api.riotgames.com/lol/league/v4/" +
         rank.toLowerCase() +
         "leagues/by-queue/RANKED_SOLO_5x5?api_key=";
-      const fetchURL = String(proxyurl + riotURL + key);
+      const fetchURL = String(riotURL + process.env.REACT_APP_API_KEY);
       this.buildSummonerIdsArray("master+", fetchURL);
     } else {
       const riotURL =
         "https://na1.api.riotgames.com/lol/league/v4/entries/RANKED_SOLO_5x5/" +
         rank.toUpperCase() +
         "/II?api_key=";
-      const fetchURL = String(proxyurl + riotURL + key);
+      const fetchURL = String(+ riotURL + process.env.REACT_APP_API_KEY);
       this.buildSummonerIdsArray("ironToDiamond", fetchURL);
     }
   }
@@ -119,11 +118,10 @@ class CurrentRankSlider extends Component {
     let urls = [];
     for (let ids in summonerIds) {
       urls.push(
-        proxyurl +
         "https://na1.api.riotgames.com/lol/summoner/v4/summoners/" +
         summonerIds[ids] +
         "?api_key=" +
-        key
+        process.env.REACT_APP_API_KEY
       );
     }
 
@@ -158,11 +156,10 @@ class CurrentRankSlider extends Component {
     await Promise.all(
       accountIds.map((id, index) =>
         fetch(
-          proxyurl +
           "https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/" +
           id +
           "?api_key=" +
-          key
+          process.env.REACT_APP_API_KEY
         )
           .then(result => {
             if (!result.ok) {
@@ -224,7 +221,6 @@ class CurrentRankSlider extends Component {
   }
   getChampionFromID() {
     fetch(
-      proxyurl +
       "http://ddragon.leagueoflegends.com/cdn/11.5.1/data/en_US/championFull.json"
     )
       .then(result => {

@@ -1,4 +1,5 @@
 @import "../../styles/variables.scss";
+
 #champion_container {
   animation: slideDown 2s ease-in;
   height: 2000px;
@@ -20,33 +21,39 @@
     width: 100%;
     position: absolute;
     bottom: 0;
+
     h1 {
       padding-top: calc(2px + (15 - 2) * ((100vw - 300px) / (1900 - 300)));
       font-size: calc(40px + (90 - 40) * ((100vw - 200px) / (1000 - 200)));
     }
+
     h5 {
       font-size: calc(10px + (20 - 10) * ((100vw - 300px) / (1600 - 300)));
       margin-bottom: 20px;
     }
   }
 }
+
 // Champion Stats Component
 #champion_stats_container {
   min-height: 200px;
   width: 100%;
   text-align: center;
+
   h1 {
     padding-top: 40px;
     font-family: $titleFont;
     color: $titleColor;
     margin-bottom: 30px;
   }
+
   hr {
     height: 1.5px;
     opacity: 0.25;
     border: 0px;
     background-image: linear-gradient(95deg, #1affff, transparent);
   }
+
   #stats {
     background-color: #1f1f35;
     display: inline-flex;
@@ -76,17 +83,20 @@
     font-family: $titleFont;
     color: $titleColor;
   }
+
   hr {
     height: 1.5px;
     opacity: 0.25;
     border: 0px;
     background-image: linear-gradient(95deg, #1affff, transparent);
   }
+
   #alert {
     margin-bottom: 20px;
     text-align: center;
     color: $titleColor;
     font-family: $secondaryTitleFont;
+
     #alert_arrow {
       animation: bounce 5s infinite;
     }
@@ -98,6 +108,7 @@
     display: inline-flex;
     justify-content: center;
     width: 100%;
+
     #passive,
     #Q,
     #W,
@@ -113,6 +124,7 @@
       width: auto;
       max-width: 100%;
       transition: transform 0.5s;
+
       &:hover {
         transform: scale(1.5);
         cursor: pointer;
@@ -120,19 +132,24 @@
     }
   }
 }
-.popover-body {
+
+body>div.popover {
   background-color: #1f1f35;
+  padding: 10px;
+
   h4,
   h5,
   p,
   li {
     color: white;
   }
+
   ul {
     display: inline-flex;
     list-style-type: none;
     padding-left: 0px;
     white-space: nowrap;
+
     li {
       padding: 2px;
     }
@@ -143,20 +160,24 @@
 #champion_skins_container {
   padding-top: 40px;
   text-align: center;
+
   h1 {
     padding-bottom: 30px;
     font-family: $titleFont;
     color: $titleColor;
   }
+
   hr {
     height: 1.5px;
     opacity: 0.25;
     border: 0px;
     background-image: linear-gradient(95deg, #1affff, transparent);
   }
+
   .img_container {
     padding-bottom: 20px;
   }
+
   img {
     max-width: 100%;
     height: auto;
@@ -165,14 +186,17 @@
     border-bottom: 2px solid #3d3d66;
   }
 }
+
 @keyframes slideDown {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
 }
+
 @media (min-width: 2400px) {
   #champion_name_container {
     #name_and_title {
@@ -180,13 +204,16 @@
         padding-top: 36px;
         font-size: 120px;
       }
+
       h5 {
         font-size: 42px;
       }
     }
   }
 }
+
 @keyframes bounce {
+
   0%,
   20%,
   50%,
@@ -194,9 +221,11 @@
   100% {
     transform: translateY(0);
   }
+
   40% {
     transform: translateY(-30px);
   }
+
   60% {
     transform: translateY(-15px);
   }

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import FreeChampionsSlider from "../Free Champions Components/free-champions-slider";
-import { key, proxyurl } from "../../../variables";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -36,14 +35,13 @@ class FreeChampions extends Component {
 
       Promise.all([
         fetch(
-          proxyurl +
-            "https://na1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=" +
-            key
+          "https://na1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=" +
+          process.env.REACT_APP_API_KEY,
         ),
 
         fetch(
-          proxyurl +
-            "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
+
+          "http://ddragon.leagueoflegends.com/cdn/9.10.1/data/en_US/championFull.json"
         )
       ])
         .then(([res1, res2]) => {

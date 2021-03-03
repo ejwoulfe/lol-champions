@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ChampionsList from "./champions-list";
-import { proxyurl } from "../../variables";
+
 
 class ChampionsListContainer extends Component {
   constructor() {
@@ -10,7 +10,6 @@ class ChampionsListContainer extends Component {
 
   componentDidMount() {
     fetch(
-      proxyurl +
       "http://ddragon.leagueoflegends.com/cdn/11.5.1/data/en_US/championFull.json"
     )
       .then(result => result.json())

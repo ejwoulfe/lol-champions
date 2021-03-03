@@ -7,6 +7,7 @@ import { Champion } from "./Components/Champion";
 import NavigationBar from "./Components/Navigation/navigation-container";
 import "bootstrap/dist/css/bootstrap.css";
 import "./Components/Index/index-style.css";
+require('dotenv').config();
 class Index extends Component {
   render() {
     return (

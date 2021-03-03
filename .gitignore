@@ -5,9 +5,8 @@
 .pnp.js
 
 
-#api keys
+#keys
 .env
-/src/variables.js
 
 
 #Code Coutner
