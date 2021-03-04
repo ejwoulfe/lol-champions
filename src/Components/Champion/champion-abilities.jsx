@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import AbilityPreview from "./ability-preview";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 class ChampionAbilities extends Component {
-  state = {};
+
+
+
 
   render() {
     return (
@@ -13,112 +14,75 @@ class ChampionAbilities extends Component {
         <div id="ability_icons_container">
           <div id="passive">
             <span className="content-border">
-              <OverlayTrigger
-                trigger="click"
-                placement="bottom"
-                overlay={
-                  <AbilityPreview
-                    spellinfo={this.props.championPassive}
-                    type="passive"
-                  />
+              <img
+                src={
+                  "https://ddragon.leagueoflegends.com/cdn/11.5.1/img/passive/" +
+                  this.props.championPassive.image.full
                 }
-                rootClose
-              >
-                <img
-                  src={
-                    "https://ddragon.leagueoflegends.com/cdn/11.5.1/img/passive/" +
-                    this.props.championPassive.image.full
-                  }
-                  alt="passive"
-                />
-              </OverlayTrigger>
+                alt="passive"
+              />
+
+
             </span>
+            <AbilityPreview spellinfo={this.props.championPassive} type="passive" />
           </div>
           <div id="Q">
             <span className="content-border">
-              <OverlayTrigger
-                trigger="click"
-                placement="bottom"
-                overlay={
-                  <AbilityPreview spellinfo={this.props.championAbilities[0]} />
+
+              <img
+                src={
+                  "https://ddragon.leagueoflegends.com/cdn/11.5.1/img/spell/" +
+                  this.props.championAbilities[0].image.full
                 }
-                rootClose
-              >
-                <img
-                  src={
-                    "https://ddragon.leagueoflegends.com/cdn/11.5.1/img/spell/" +
-                    this.props.championAbilities[0].image.full
-                  }
-                  alt="Q"
-                />
-              </OverlayTrigger>
+                alt="Q"
+              />
+
             </span>
+            <AbilityPreview spellinfo={this.props.championAbilities[0]} />
+
           </div>
           <div id="W">
             <span className="content-border">
-              <OverlayTrigger
-                trigger="click"
-                placement="bottom"
-                overlay={
-                  <AbilityPreview spellinfo={this.props.championAbilities[1]} />
+
+              <img
+                src={
+                  "https://ddragon.leagueoflegends.com/cdn/11.5.1/img/spell/" +
+                  this.props.championAbilities[1].image.full
                 }
-                rootClose
-              >
-                <img
-                  src={
-                    "https://ddragon.leagueoflegends.com/cdn/11.5.1/img/spell/" +
-                    this.props.championAbilities[1].image.full
-                  }
-                  alt="W"
-                />
-              </OverlayTrigger>
+                alt="W"
+              />
             </span>
+            <AbilityPreview spellinfo={this.props.championAbilities[1]} />
           </div>
           <div id="E">
             <span className="content-border">
-              <OverlayTrigger
-                trigger="click"
-                placement="bottom"
-                overlay={
-                  <AbilityPreview spellinfo={this.props.championAbilities[2]} />
+
+              <img
+                src={
+                  "https://ddragon.leagueoflegends.com/cdn/11.5.1/img/spell/" +
+                  this.props.championAbilities[2].image.full
                 }
-                rootClose
-              >
-                <img
-                  src={
-                    "https://ddragon.leagueoflegends.com/cdn/11.5.1/img/spell/" +
-                    this.props.championAbilities[2].image.full
-                  }
-                  alt="E"
-                />
-              </OverlayTrigger>
+                alt="E"
+              />
             </span>
+            <AbilityPreview spellinfo={this.props.championAbilities[2]} />
           </div>
           <div id="R">
             <span className="content-border">
-              <OverlayTrigger
-                trigger="click"
-                placement="bottom"
-                overlay={
-                  <AbilityPreview spellinfo={this.props.championAbilities[3]} />
+              <img
+                src={
+                  "https://ddragon.leagueoflegends.com/cdn/11.5.1/img/spell/" +
+                  this.props.championAbilities[3].image.full
                 }
-                rootClose
-              >
-                <img
-                  src={
-                    "https://ddragon.leagueoflegends.com/cdn/11.5.1/img/spell/" +
-                    this.props.championAbilities[3].image.full
-                  }
-                  alt="R"
-                />
-              </OverlayTrigger>
+
+                alt="R"
+              />
             </span>
+            <AbilityPreview spellinfo={this.props.championAbilities[3]} />
           </div>
         </div>
-        <div id="alert">
-          <FontAwesomeIcon icon={faArrowUp} id="alert_arrow" />
-          <h4>Click an icon to see the ability description!</h4>
-        </div>
+
+
         <hr />
       </div>
     );

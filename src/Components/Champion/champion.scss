@@ -103,11 +103,13 @@
   }
 
   #ability_icons_container {
-    margin-bottom: 350px;
-    flex-wrap: wrap;
-    display: inline-flex;
-    justify-content: center;
+    flex-wrap: nowrap;
+    display: flex;
+    flex-direction: column;
     width: 100%;
+
+
+
 
     #passive,
     #Q,
@@ -115,43 +117,52 @@
     #E,
     #R {
       padding: calc(10px + (30 - 10) * ((100vw - 300px) / (1900 - 300)));
+      text-align: center;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+
+
+
     }
 
     .content-border {
       border: 2px solid white;
       border-radius: 3px;
       display: inline-block;
-      width: auto;
-      max-width: 100%;
-      transition: transform 0.5s;
+      width: fit-content;
+      margin: auto;
+      z-index: 2;
 
-      &:hover {
-        transform: scale(1.5);
-        cursor: pointer;
-      }
     }
-  }
-}
 
-body>div.popover {
-  background-color: #1f1f35;
-  padding: 10px;
+    .ability_container {
+      margin-top: -10px;
+      z-index: 0;
+      background-color: #1f1f35;
+      padding: 10px;
+      color: white;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      border-radius: 10px;
 
-  h4,
-  h5,
-  p,
-  li {
-    color: white;
-  }
+      p {
+        width: 60%;
+        margin: auto;
+      }
 
-  ul {
-    display: inline-flex;
-    list-style-type: none;
-    padding-left: 0px;
-    white-space: nowrap;
 
-    li {
-      padding: 2px;
+      ul {
+        display: inline-flex;
+        list-style-type: none;
+        padding-left: 0px;
+        white-space: nowrap;
+
+        li {
+          padding: 2px;
+        }
+      }
     }
   }
 }

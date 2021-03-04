@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import Popover from "react-bootstrap/Popover";
 
 class AbilityPreview extends Component {
+
+
   createCostsList(array) {
     return array.map((item, index) => (
       <React.Fragment key={index}>
@@ -10,6 +11,7 @@ class AbilityPreview extends Component {
       </React.Fragment>
     ));
   }
+
   createSlash(arr, index) {
     if (index === arr.length - 1) {
     } else {
@@ -28,14 +30,15 @@ class AbilityPreview extends Component {
   render() {
     if (this.props.type === "passive") {
       return (
-        <Popover {...this.props} placement="bottom">
+        <div className="ability_container">
           <h4>{this.props.spellinfo.name}</h4>
           <p>{this.props.spellinfo.description}</p>
-        </Popover>
+        </div>
       );
     } else {
       return (
-        <Popover {...this.props} placement="bottom">
+
+        <div className="ability_container">
           <h4>{this.props.spellinfo.name}</h4>
           <p>{this.props.spellinfo.description}</p>
           <h5>Costs:</h5>
@@ -50,7 +53,7 @@ class AbilityPreview extends Component {
             <li> - Seconds</li>
           </ul>
           <p>Range: {this.props.spellinfo.range[0]}</p>
-        </Popover>
+        </div>
       );
     }
   }
