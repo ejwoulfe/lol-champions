@@ -35,6 +35,7 @@ class FreeChampions extends Component {
 
       Promise.all([
         fetch(
+          process.env.REACT_APP_PROXY +
           "https://na1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=" +
           process.env.REACT_APP_API_KEY,
         ),

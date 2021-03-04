@@ -63,18 +63,19 @@ class CurrentRankSlider extends Component {
         "https://na1.api.riotgames.com/lol/league/v4/" +
         rank.toLowerCase() +
         "leagues/by-queue/RANKED_SOLO_5x5?api_key=";
-      const fetchURL = String(riotURL + process.env.REACT_APP_API_KEY);
+      const fetchURL = String(process.env.REACT_APP_PROXY + riotURL + process.env.REACT_APP_API_KEY);
       this.buildSummonerIdsArray("master+", fetchURL);
     } else {
       const riotURL =
         "https://na1.api.riotgames.com/lol/league/v4/entries/RANKED_SOLO_5x5/" +
         rank.toUpperCase() +
         "/II?api_key=";
-      const fetchURL = String(+ riotURL + process.env.REACT_APP_API_KEY);
+      const fetchURL = String(process.env.REACT_APP_PROXY + riotURL + process.env.REACT_APP_API_KEY);
       this.buildSummonerIdsArray("ironToDiamond", fetchURL);
     }
   }
   async buildSummonerIdsArray(type, fetchURL) {
+    await setTimeout(() => { console.log("World!"); }, 2000);
     if (type === "master+") {
       await fetch(fetchURL)
         .then(result => {
@@ -118,6 +119,7 @@ class CurrentRankSlider extends Component {
     let urls = [];
     for (let ids in summonerIds) {
       urls.push(
+        process.env.REACT_APP_PROXY +
         "https://na1.api.riotgames.com/lol/summoner/v4/summoners/" +
         summonerIds[ids] +
         "?api_key=" +
@@ -152,10 +154,12 @@ class CurrentRankSlider extends Component {
 
   async fetchChampionsPlayedBySummoners(accountIds) {
     const m = new Map();
+    await setTimeout(() => { console.log("World!"); }, 2000);
 
     await Promise.all(
       accountIds.map((id, index) =>
         fetch(
+          process.env.REACT_APP_PROXY +
           "https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/" +
           id +
           "?api_key=" +
@@ -300,7 +304,7 @@ class CurrentRankSlider extends Component {
         >
           <Card.Img
             src={
-              "s://ddragon.leagueoflegends.com/cdn/img/champion/splash/" +
+              "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/" +
               champion.id +
               "_0.jpg"
             }
