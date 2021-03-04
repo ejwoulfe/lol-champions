@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import AbilityPreview from "./ability-preview";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+
 class ChampionAbilities extends Component {
 
 
