@@ -124,7 +124,7 @@ class CurrentRankSlider extends Component {
         "https://na1.api.riotgames.com/lol/summoner/v4/summoners/" +
         summonerIds[ids] +
         "?api_key=" +
-        process.env.REACT_APP_API_KEY
+        process.env.REACT_APP_API_KEY,
       );
     }
 
