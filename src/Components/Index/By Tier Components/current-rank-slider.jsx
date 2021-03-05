@@ -75,7 +75,6 @@ class CurrentRankSlider extends Component {
     }
   }
   async buildSummonerIdsArray(type, fetchURL) {
-    await setTimeout(() => { console.log("World!"); }, 2000);
     if (type === "master+") {
       await fetch(fetchURL)
         .then(result => {
@@ -112,7 +111,9 @@ class CurrentRankSlider extends Component {
           }
         });
     }
+
     this.fetchAccountIds(this.state.summonerIds);
+
   }
 
   async fetchAccountIds(summonerIds) {
@@ -150,11 +151,12 @@ class CurrentRankSlider extends Component {
     );
 
     this.fetchChampionsPlayedBySummoners(this.state.accountIds);
+
   }
 
   async fetchChampionsPlayedBySummoners(accountIds) {
     const m = new Map();
-    await setTimeout(() => { console.log("World!"); }, 2000);
+
 
     await Promise.all(
       accountIds.map((id, index) =>
@@ -200,7 +202,7 @@ class CurrentRankSlider extends Component {
       .map(([k]) => k);
     return keys[occurence];
   }
-  getSliderChampionIds(map, topTenArray) {
+  async getSliderChampionIds(map, topTenArray) {
     let topTenChampIDs = [];
     let count = 0;
     for (let i = 0; i < topTenArray.length; i++) {
@@ -222,6 +224,7 @@ class CurrentRankSlider extends Component {
       });
     }
     this.getChampionFromID();
+
   }
   getChampionFromID() {
     fetch(
