@@ -60,17 +60,18 @@ class CurrentRankSlider extends Component {
   fetchSummonerIds(rank) {
     if (rank === "Master" || rank === "Grandmaster" || rank === "Challenger") {
       const riotURL =
-        "https://na1.api.riotgames.com/lol/league/v4/" +
+        "https://3agpr8hwd1.execute-api.us-east-2.amazonaws.com/" + process.env.REACT_APP_STAGE_NAME + "/uppertiers/" +
         rank.toLowerCase() +
-        "leagues/by-queue/RANKED_SOLO_5x5?api_key=";
-      const fetchURL = String(process.env.REACT_APP_PROXY + riotURL + process.env.REACT_APP_API_KEY);
+        "?api_key=";
+      const fetchURL = String(riotURL + process.env.REACT_APP_API_KEY);
       this.buildSummonerIdsArray("master+", fetchURL);
     } else {
+
       const riotURL =
-        "https://na1.api.riotgames.com/lol/league/v4/entries/RANKED_SOLO_5x5/" +
+        "https://3agpr8hwd1.execute-api.us-east-2.amazonaws.com/" + process.env.REACT_APP_STAGE_NAME + "/lowertiers/" +
         rank.toUpperCase() +
         "/II?api_key=";
-      const fetchURL = String(process.env.REACT_APP_PROXY + riotURL + process.env.REACT_APP_API_KEY);
+      const fetchURL = String(riotURL + process.env.REACT_APP_API_KEY);
       this.buildSummonerIdsArray("ironToDiamond", fetchURL);
     }
   }
@@ -120,8 +121,7 @@ class CurrentRankSlider extends Component {
     let urls = [];
     for (let ids in summonerIds) {
       urls.push(
-        process.env.REACT_APP_PROXY +
-        "https://na1.api.riotgames.com/lol/summoner/v4/summoners/" +
+        "https://3agpr8hwd1.execute-api.us-east-2.amazonaws.com/" + process.env.REACT_APP_STAGE_NAME + "/accounts/" +
         summonerIds[ids] +
         "?api_key=" +
         process.env.REACT_APP_API_KEY,
@@ -143,9 +143,12 @@ class CurrentRankSlider extends Component {
           })
 
           .then(result => {
-            this.setState({
-              accountIds: [...this.state.accountIds, result.accountId]
-            });
+
+            if (result.accountId !== undefined) {
+              this.setState({
+                accountIds: [...this.state.accountIds, result.accountId]
+              });
+            }
           })
       )
     );
@@ -161,10 +164,10 @@ class CurrentRankSlider extends Component {
     await Promise.all(
       accountIds.map((id, index) =>
         fetch(
-          process.env.REACT_APP_PROXY +
-          "https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/" +
+
+          "https://3agpr8hwd1.execute-api.us-east-2.amazonaws.com/" + process.env.REACT_APP_STAGE_NAME + "/accounts/" +
           id +
-          "?api_key=" +
+          "/matches?api_key=" +
           process.env.REACT_APP_API_KEY
         )
           .then(result => {
@@ -177,7 +180,6 @@ class CurrentRankSlider extends Component {
               return result.json();
             }
           })
-
           .then(result => {
             for (let i = 0; i < result.matches.length; i++) {
               let championID = result.matches[i].champion;
