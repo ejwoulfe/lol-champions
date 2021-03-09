@@ -19,6 +19,7 @@ class CurrentRankSlider extends Component {
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
+
   setSliderSettings() {
     let settings;
     if (this.state.width < 1000 && this.state.width > 800) {
@@ -57,6 +58,7 @@ class CurrentRankSlider extends Component {
     this.setSliderSettings();
   }
 
+
   fetchSummonerIds(rank) {
     if (rank === "Master" || rank === "Grandmaster" || rank === "Challenger") {
       const riotURL =
@@ -80,13 +82,13 @@ class CurrentRankSlider extends Component {
       await fetch(fetchURL)
         .then(result => {
           if (!result.ok) {
-            throw new Error(this.catchErrors(result.status));
+            throw new Error(this.catchErrors());
           } else {
             return result.json();
           }
         })
         .then(result => {
-          for (let index = 0; index < 20; index++) {
+          for (let index = 0; index < 10; index++) {
             this.setState({
               summonerIds: [
                 ...this.state.summonerIds,
@@ -99,13 +101,13 @@ class CurrentRankSlider extends Component {
       await fetch(fetchURL)
         .then(result => {
           if (!result.ok) {
-            throw new Error(this.catchErrors(result.status));
+            throw new Error(this.catchErrors());
           } else {
             return result.json();
           }
         })
         .then(result => {
-          for (let index = 0; index < 20; index++) {
+          for (let index = 0; index < 10; index++) {
             this.setState({
               summonerIds: [...this.state.summonerIds, result[index].summonerId]
             });
@@ -134,7 +136,7 @@ class CurrentRankSlider extends Component {
           .then(result => {
             if (!result.ok) {
               if (index === urls.length - 1) {
-                this.catchErrors(result.status);
+                this.catchErrors();
               }
               throw new Error(result.status);
             } else {
@@ -158,7 +160,9 @@ class CurrentRankSlider extends Component {
   }
 
   async fetchChampionsPlayedBySummoners(accountIds) {
+    const delay = ms => new Promise(res => setTimeout(res, ms));
     const m = new Map();
+    await delay(3000);
 
 
     await Promise.all(
@@ -173,7 +177,7 @@ class CurrentRankSlider extends Component {
           .then(result => {
             if (!result.ok) {
               if (index === accountIds.length - 1) {
-                this.catchErrors(result.status);
+                this.catchErrors();
               }
               throw new Error(result.status);
             } else {
@@ -181,6 +185,8 @@ class CurrentRankSlider extends Component {
             }
           })
           .then(result => {
+
+
             for (let i = 0; i < result.matches.length; i++) {
               let championID = result.matches[i].champion;
 
@@ -190,9 +196,13 @@ class CurrentRankSlider extends Component {
                 m.set(championID, 1);
               }
             }
+
           })
+
       )
-    );
+    ).catch((error) => {
+      throw new Error(this.catchErrors());
+    });
     let occurenceArray = Array.from(m.values());
     let topTenValues = occurenceArray.sort((a, b) => b - a).slice(0, 16);
 
@@ -265,17 +275,14 @@ class CurrentRankSlider extends Component {
 
     this.setState({ isLoading: false });
   }
-  catchErrors(code) {
-    if (code === 429) {
-      alert(
-        "Too many requests, the current limits are: \n 20 requests every 1 second and 100 requests every 2 minutes. \n Please try again in a couple of minutes."
-      );
-    } else {
-      alert(
-        "There was trouble processing your request. Please try again later."
-      );
-    }
+  catchErrors() {
+
+    alert(
+      "Too many requests, the current limits are: \n 20 requests every 1 second and 100 requests every 2 minutes. \n Please try again in a couple of minutes."
+    );
+
   }
+
   componentDidMount() {
     this.setState({ isLoading: true });
     this.fetchSummonerIds(this.props.tier);
