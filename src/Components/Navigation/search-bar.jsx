@@ -43,9 +43,9 @@ class SearchBar extends Component {
         searchTerm: word
       });
       let tempArray = [];
-      this.props.list.forEach(function(championObject) {
-        var x = championObject.id;
-        if (x.match(word) !== null) {
+      this.props.list.forEach(function (championObject) {
+        let championName = championObject.id;
+        if (championName.match(word) !== null) {
           tempArray.push(championObject);
         }
       });
@@ -55,11 +55,11 @@ class SearchBar extends Component {
     }
   };
   listItemClickedOn() {
-    var x = document.getElementById("search_suggestions");
-    if (x.style.display === "none") {
-      x.style.display = "block";
+    let listItem = document.getElementById("search_suggestions");
+    if (listItem.style.display === "none") {
+      listItem.style.display = "block";
     } else {
-      x.style.display = "none";
+      listItem.style.display = "none";
     }
   }
 
@@ -67,12 +67,9 @@ class SearchBar extends Component {
     const listItems = this.state.matchingChampionsFound.map(champion => (
       <li key={champion.id} onClick={this.listItemClickedOn}>
         <Link
-          variant="link"
           key={champion.id + "list_item"}
-          to={{
-            pathname: "/champion/" + champion.name,
-            state: { champion: champion }
-          }}
+          to={"/champion/" + champion.name}
+          state={{ champion: champion }}
         >
           <img
             src={

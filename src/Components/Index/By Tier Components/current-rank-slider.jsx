@@ -129,6 +129,7 @@ class CurrentRankSlider extends Component {
         process.env.REACT_APP_API_KEY,
       );
     }
+    console.log(urls)
 
     await Promise.all(
       urls.map((url, index) =>
@@ -146,37 +147,42 @@ class CurrentRankSlider extends Component {
 
           .then(result => {
 
-            if (result.accountId !== undefined) {
+            if (result.puuid !== undefined) {
               this.setState({
-                accountIds: [...this.state.accountIds, result.accountId]
+                accountIds: [...this.state.accountIds, result.puuid]
               });
             }
           })
       )
     );
 
+
+
     this.fetchChampionsPlayedBySummoners(this.state.accountIds);
 
   }
 
-  async fetchChampionsPlayedBySummoners(accountIds) {
+  async fetchChampionsPlayedBySummoners(accountPuuIds) {
     const delay = ms => new Promise(res => setTimeout(res, ms));
-    const m = new Map();
-    await delay(3000);
+    const map = new Map();
+    await delay(2000);
 
 
     await Promise.all(
-      accountIds.map((id, index) =>
+      accountPuuIds.map((id, index) =>
         fetch(
-
           "https://3agpr8hwd1.execute-api.us-east-2.amazonaws.com/" + process.env.REACT_APP_STAGE_NAME + "/accounts/" +
           id +
           "/matches?api_key=" +
           process.env.REACT_APP_API_KEY
         )
           .then(result => {
+            console.log("https://3agpr8hwd1.execute-api.us-east-2.amazonaws.com/" + process.env.REACT_APP_STAGE_NAME + "/accounts/" +
+              id +
+              "/matches?api_key=" +
+              process.env.REACT_APP_API_KEY)
             if (!result.ok) {
-              if (index === accountIds.length - 1) {
+              if (index === accountPuuIds.length - 1) {
                 this.catchErrors();
               }
               throw new Error(result.status);
@@ -186,14 +192,15 @@ class CurrentRankSlider extends Component {
           })
           .then(result => {
 
+            console.log(result)
 
             for (let i = 0; i < result.matches.length; i++) {
               let championID = result.matches[i].champion;
 
-              if (m.has(championID)) {
-                m.set(championID, m.get(championID) + 1);
+              if (map.has(championID)) {
+                map.set(championID, map.get(championID) + 1);
               } else {
-                m.set(championID, 1);
+                map.set(championID, 1);
               }
             }
 
@@ -201,12 +208,12 @@ class CurrentRankSlider extends Component {
 
       )
     ).catch((error) => {
-      throw new Error(this.catchErrors());
+      console.log(error)
     });
-    let occurenceArray = Array.from(m.values());
+    let occurenceArray = Array.from(map.values());
     let topTenValues = occurenceArray.sort((a, b) => b - a).slice(0, 16);
 
-    this.getSliderChampionIds(m, topTenValues);
+    this.getSliderChampionIds(map, topTenValues);
   }
   getByValue(map, searchValue, occurence) {
     let keys = [...map.entries()]

@@ -23,7 +23,7 @@ class FreeChampionsSlider extends Component {
     this.setSliderSettings();
   }
   setSliderSettings() {
-    var settings;
+    let settings;
     if (this.state.width < 1000 && this.state.width > 800) {
       settings = {
         infinite: true,
@@ -55,11 +55,8 @@ class FreeChampionsSlider extends Component {
     let freeChampions = this.props.data.map(champion => (
       <Card key={champion.id} className="item">
         <Link
-          variant="link"
-          to={{
-            pathname: "champion/" + champion.name,
-            state: { champion: champion }
-          }}
+          to={"champion/" + champion.name}
+          state={{ champion: champion }}
         >
           <Card.Img
             src={

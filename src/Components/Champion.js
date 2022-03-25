@@ -1,21 +1,16 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import ChampionContainer from "./Champion/ChampionContainer";
+import { useLocation } from "react-router-dom";
+export function Champion() {
 
-export class Champion extends Component {
-  state = {
-    champion: this.props.location.state.champion
-  };
+  const location = useLocation();
+  const [champion] = useState(location.state.champion)
 
-  componentDidUpdate() {
-    if (this.props.location.state.champion !== this.state.champion) {
-      this.setState({ champion: this.props.location.state.champion });
-    }
-  }
-  render() {
-    return (
-      <div>
-        <ChampionContainer champion={this.state.champion} />
-      </div>
-    );
-  }
+
+  return (
+    <div>
+      <ChampionContainer champion={champion} />
+    </div>
+  );
+
 }

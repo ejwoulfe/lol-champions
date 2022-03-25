@@ -18,6 +18,10 @@
   #bar_and_icon {
     background-color: #cfcfcf;
     border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
     #search_bar_input {
       height: 30px;
       width: 80%;
