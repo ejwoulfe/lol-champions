@@ -73,7 +73,7 @@ class SearchBar extends Component {
         >
           <img
             src={
-              "http://ddragon.leagueoflegends.com/cdn/9.10.1/img/champion/" +
+              "http://ddragon.leagueoflegends.com/cdn/12.4.1/img/champion/" +
               champion.id +
               ".png"
             }

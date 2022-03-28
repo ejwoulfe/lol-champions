@@ -12,6 +12,7 @@ class CurrentRankSlider extends Component {
       width: window.innerWidth,
       summonerIds: [],
       accountIds: [],
+      matchesIds: [],
       chosenChampionIds: [],
       championsObjectArray: [],
       isLoading: false
@@ -125,11 +126,11 @@ class CurrentRankSlider extends Component {
       urls.push(
         "https://3agpr8hwd1.execute-api.us-east-2.amazonaws.com/" + process.env.REACT_APP_STAGE_NAME + "/accounts/" +
         summonerIds[ids] +
+        "/puuid" +
         "?api_key=" +
         process.env.REACT_APP_API_KEY,
       );
     }
-    console.log(urls)
 
     await Promise.all(
       urls.map((url, index) =>
@@ -158,29 +159,26 @@ class CurrentRankSlider extends Component {
 
 
 
-    this.fetchChampionsPlayedBySummoners(this.state.accountIds);
+    this.fetchSummonerMatchHistory(this.state.accountIds);
 
   }
 
-  async fetchChampionsPlayedBySummoners(accountPuuIds) {
+  async fetchSummonerMatchHistory(accountPuuIds) {
     const delay = ms => new Promise(res => setTimeout(res, ms));
     const map = new Map();
     await delay(2000);
 
 
     await Promise.all(
-      accountPuuIds.map((id, index) =>
+      accountPuuIds.map((puuid, index) =>
         fetch(
-          "https://3agpr8hwd1.execute-api.us-east-2.amazonaws.com/" + process.env.REACT_APP_STAGE_NAME + "/accounts/" +
-          id +
-          "/matches?api_key=" +
+          "https://3agpr8hwd1.execute-api.us-east-2.amazonaws.com/" + process.env.REACT_APP_STAGE_NAME + "/matches/" +
+          puuid +
+          "/match-history?api_key=" +
           process.env.REACT_APP_API_KEY
         )
           .then(result => {
-            console.log("https://3agpr8hwd1.execute-api.us-east-2.amazonaws.com/" + process.env.REACT_APP_STAGE_NAME + "/accounts/" +
-              id +
-              "/matches?api_key=" +
-              process.env.REACT_APP_API_KEY)
+
             if (!result.ok) {
               if (index === accountPuuIds.length - 1) {
                 this.catchErrors();
@@ -192,10 +190,56 @@ class CurrentRankSlider extends Component {
           })
           .then(result => {
 
-            console.log(result)
 
-            for (let i = 0; i < result.matches.length; i++) {
-              let championID = result.matches[i].champion;
+            for (let i = 0; i < 2; i++) {
+              this.setState({
+                matchesIds: [...this.state.matchesIds, result[i]]
+              })
+            }
+
+
+          })
+
+      )
+    ).catch((error) => {
+      console.log(error)
+    });
+
+    this.fetchChampionIdsFromMatches(this.state.matchesIds);
+
+  }
+
+  async fetchChampionIdsFromMatches(matchIds) {
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+    const map = new Map();
+    await delay(2000);
+
+
+
+    await Promise.all(
+      matchIds.map((matchId, index) =>
+        fetch(
+          "https://3agpr8hwd1.execute-api.us-east-2.amazonaws.com/" + process.env.REACT_APP_STAGE_NAME + "/played-champions/" +
+          matchId +
+          "?api_key=" +
+          process.env.REACT_APP_API_KEY
+        )
+          .then(result => {
+
+            if (!result.ok) {
+              if (index === matchIds.length - 1) {
+                this.catchErrors();
+              }
+              throw new Error(result.status);
+            } else {
+              return result.json();
+            }
+          })
+          .then(result => {
+
+
+            for (let i = 0; i < result.info.participants.length; i++) {
+              let championID = result.info.participants[i].championId;
 
               if (map.has(championID)) {
                 map.set(championID, map.get(championID) + 1);
@@ -210,6 +254,7 @@ class CurrentRankSlider extends Component {
     ).catch((error) => {
       console.log(error)
     });
+
     let occurenceArray = Array.from(map.values());
     let topTenValues = occurenceArray.sort((a, b) => b - a).slice(0, 16);
 
@@ -242,12 +287,13 @@ class CurrentRankSlider extends Component {
         ]
       });
     }
+
     this.getChampionFromID();
 
   }
   getChampionFromID() {
     fetch(
-      "https://ddragon.leagueoflegends.com/cdn/11.5.1/data/en_US/championFull.json"
+      "http://ddragon.leagueoflegends.com/cdn/12.4.1/data/en_US/champion.json"
     )
       .then(result => {
         if (!result.ok) {
@@ -315,11 +361,8 @@ class CurrentRankSlider extends Component {
     let mostPlayedChampions = this.state.championsObjectArray.map(champion => (
       <Card key={champion}>
         <Link
-          letiant="link"
-          to={{
-            pathname: "champion/" + champion.name,
-            state: { champion: champion }
-          }}
+          to={"/champion/" + champion.name}
+          state={{ champion: champion }}
         >
           <Card.Img
             src={
@@ -333,6 +376,7 @@ class CurrentRankSlider extends Component {
       </Card>
     ));
     return (
+
       <div id="slider_container">
         <Slider {...this.setSliderSettings()}>{mostPlayedChampions}</Slider>
       </div>

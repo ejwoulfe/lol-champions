@@ -6,20 +6,17 @@ import Row from "react-bootstrap/Row";
 function ChampionsList(props) {
   const listOfChampions = props.list.map(champion => (
     <Link
-      variant="link"
       key={champion.id}
       id="champion_link"
-      to={{
-        pathname: "/champion/" + champion.name,
-        state: { champion: champion }
-      }}
+      to={"/champion/" + champion.name}
+      state={{ champion: champion }}
     >
       <div id="img_container">
         <img
           id={champion.id}
           alt={champion.name}
           src={
-            "https://ddragon.leagueoflegends.com/cdn/11.5.1/img/champion/" +
+            "https://ddragon.leagueoflegends.com/cdn/12.4.1/img/champion/" +
             champion.id +
             ".png"
           }

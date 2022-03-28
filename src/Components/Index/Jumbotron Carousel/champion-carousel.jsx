@@ -7,7 +7,7 @@ class ChampionCarousel extends Component {
     chosenChampions: [
       "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/AurelionSol_0.jpg",
       "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Kaisa_0.jpg",
-      "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Sylas_0.jpg"
+      "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Zeri_0.jpg"
     ],
     isLoading: false
   };

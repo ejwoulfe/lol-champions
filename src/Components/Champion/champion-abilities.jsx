@@ -15,7 +15,7 @@ class ChampionAbilities extends Component {
             <span className="content-border">
               <img
                 src={
-                  "https://ddragon.leagueoflegends.com/cdn/11.5.1/img/passive/" +
+                  "https://ddragon.leagueoflegends.com/cdn/12.4.1/img/passive/" +
                   this.props.championPassive.image.full
                 }
                 alt="passive"
@@ -30,7 +30,7 @@ class ChampionAbilities extends Component {
 
               <img
                 src={
-                  "https://ddragon.leagueoflegends.com/cdn/11.5.1/img/spell/" +
+                  "https://ddragon.leagueoflegends.com/cdn/12.4.1/img/spell/" +
                   this.props.championAbilities[0].image.full
                 }
                 alt="Q"
@@ -45,7 +45,7 @@ class ChampionAbilities extends Component {
 
               <img
                 src={
-                  "https://ddragon.leagueoflegends.com/cdn/11.5.1/img/spell/" +
+                  "https://ddragon.leagueoflegends.com/cdn/12.4.1/img/spell/" +
                   this.props.championAbilities[1].image.full
                 }
                 alt="W"
@@ -58,7 +58,7 @@ class ChampionAbilities extends Component {
 
               <img
                 src={
-                  "https://ddragon.leagueoflegends.com/cdn/11.5.1/img/spell/" +
+                  "https://ddragon.leagueoflegends.com/cdn/12.4.1/img/spell/" +
                   this.props.championAbilities[2].image.full
                 }
                 alt="E"
@@ -70,7 +70,7 @@ class ChampionAbilities extends Component {
             <span className="content-border">
               <img
                 src={
-                  "https://ddragon.leagueoflegends.com/cdn/11.5.1/img/spell/" +
+                  "https://ddragon.leagueoflegends.com/cdn/12.4.1/img/spell/" +
                   this.props.championAbilities[3].image.full
                 }
 

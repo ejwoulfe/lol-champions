@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { Home } from "./Components/Home";
 import { List } from "./Components/Champions List";
-import { Champion } from "./Components/Champion";
+import { Champion } from './Components/Champion.js'
 import NavigationBar from "./Components/Navigation/navigation-container";
 import "bootstrap/dist/css/bootstrap.css";
 import "./Components/Index/index-style.css";
