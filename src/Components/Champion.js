@@ -10,9 +10,6 @@ export function Champion() {
     setChampion(location.state.champion)
   }, [location.state.champion])
 
-  useEffect(() => {
-    console.log("Going through route Champion")
-  })
 
   return (
     <div>
