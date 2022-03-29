@@ -20,6 +20,10 @@
   margin-top: 60px;
   animation: slideAndFade 1s ease-out;
   margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 
   #champion_link {
     text-align: center;

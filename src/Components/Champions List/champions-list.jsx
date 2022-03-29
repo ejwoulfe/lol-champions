@@ -31,7 +31,7 @@ function ChampionsList(props) {
 
   return (
     <div id="champions_list">
-      <Row>{listOfChampions}</Row>
+      {listOfChampions}
     </div>
   );
 }
