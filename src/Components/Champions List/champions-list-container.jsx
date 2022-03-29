@@ -10,7 +10,7 @@ class ChampionsListContainer extends Component {
 
   componentDidMount() {
     fetch(
-      "http://ddragon.leagueoflegends.com/cdn/12.4.1/data/en_US/champion.json"
+      "http://ddragon.leagueoflegends.com/cdn/12.4.1/data/en_US/championFull.json"
     )
       .then(result => result.json())
       .then(result => {

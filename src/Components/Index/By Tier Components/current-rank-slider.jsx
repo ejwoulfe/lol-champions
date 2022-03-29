@@ -293,7 +293,7 @@ class CurrentRankSlider extends Component {
   }
   getChampionFromID() {
     fetch(
-      "http://ddragon.leagueoflegends.com/cdn/12.4.1/data/en_US/champion.json"
+      "http://ddragon.leagueoflegends.com/cdn/12.4.1/data/en_US/championFull.json"
     )
       .then(result => {
         if (!result.ok) {
