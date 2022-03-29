@@ -1,7 +1,6 @@
 import React from "react";
 import "./champions-list.scss";
 import { Link } from "react-router-dom";
-import Row from "react-bootstrap/Row";
 
 function ChampionsList(props) {
   const listOfChampions = props.list.map(champion => (

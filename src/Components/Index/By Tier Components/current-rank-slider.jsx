@@ -165,7 +165,6 @@ class CurrentRankSlider extends Component {
 
   async fetchSummonerMatchHistory(accountPuuIds) {
     const delay = ms => new Promise(res => setTimeout(res, ms));
-    const map = new Map();
     await delay(2000);
 
 
