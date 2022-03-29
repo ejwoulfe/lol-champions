@@ -1,2 +1,2 @@
 [build.environment]
-NODE_VERSION = "v16.13.1"
+  NODE_VERSION = "v16.13.1"
