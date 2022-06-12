@@ -64,23 +64,30 @@ class CurrentRankSlider extends Component {
     if (rank === "Master" || rank === "Grandmaster" || rank === "Challenger") {
       const riotURL =
         "https://3agpr8hwd1.execute-api.us-east-2.amazonaws.com/" + process.env.REACT_APP_STAGE_NAME + "/uppertiers/" +
-        rank.toLowerCase() +
-        "?api_key=";
-      const fetchURL = String(riotURL + process.env.REACT_APP_API_KEY);
+        rank.toLowerCase();
+      const fetchURL = String(riotURL);
       this.buildSummonerIdsArray("master+", fetchURL);
     } else {
 
       const riotURL =
         "https://3agpr8hwd1.execute-api.us-east-2.amazonaws.com/" + process.env.REACT_APP_STAGE_NAME + "/lowertiers/" +
-        rank.toUpperCase() +
-        "/II?api_key=";
-      const fetchURL = String(riotURL + process.env.REACT_APP_API_KEY);
+        rank.toUpperCase();
+      const fetchURL = String(riotURL + "/II");
       this.buildSummonerIdsArray("ironToDiamond", fetchURL);
     }
   }
   async buildSummonerIdsArray(type, fetchURL) {
     if (type === "master+") {
-      await fetch(fetchURL)
+      await fetch(fetchURL, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": "true",
+          "Access-Control-Allow-Methods": "GET,OPTIONS",
+          "Access-Control-Allow-Headers": 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token, X-Riot-Token, Access-Control-Allow-Methods, Access-Control-Allow-Origin, Access-Control-Allow-Credentials, Access-Control-Allow-Headers',
+          "X-Riot-Token": process.env.REACT_APP_API_KEY
+        }
+      }
+      )
         .then(result => {
           if (!result.ok) {
             throw new Error(this.catchErrors());
@@ -99,7 +106,15 @@ class CurrentRankSlider extends Component {
           }
         });
     } else {
-      await fetch(fetchURL)
+      await fetch(fetchURL, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": "true",
+          "Access-Control-Allow-Methods": "GET,OPTIONS",
+          "Access-Control-Allow-Headers": 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token, X-Riot-Token, Access-Control-Allow-Methods, Access-Control-Allow-Origin, Access-Control-Allow-Credentials, Access-Control-Allow-Headers',
+          "X-Riot-Token": process.env.REACT_APP_API_KEY
+        }
+      })
         .then(result => {
           if (!result.ok) {
             throw new Error(this.catchErrors());
@@ -126,15 +141,21 @@ class CurrentRankSlider extends Component {
       urls.push(
         "https://3agpr8hwd1.execute-api.us-east-2.amazonaws.com/" + process.env.REACT_APP_STAGE_NAME + "/accounts/" +
         summonerIds[ids] +
-        "/puuid" +
-        "?api_key=" +
-        process.env.REACT_APP_API_KEY,
+        "/puuid"
       );
     }
 
     await Promise.all(
       urls.map((url, index) =>
-        fetch(url)
+        fetch(url, {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Credentials": "true",
+            "Access-Control-Allow-Methods": "GET,OPTIONS",
+            "Access-Control-Allow-Headers": 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token, X-Riot-Token, Access-Control-Allow-Methods, Access-Control-Allow-Origin, Access-Control-Allow-Credentials, Access-Control-Allow-Headers',
+            "X-Riot-Token": process.env.REACT_APP_API_KEY
+          }
+        })
           .then(result => {
             if (!result.ok) {
               if (index === urls.length - 1) {
@@ -173,8 +194,16 @@ class CurrentRankSlider extends Component {
         fetch(
           "https://3agpr8hwd1.execute-api.us-east-2.amazonaws.com/" + process.env.REACT_APP_STAGE_NAME + "/matches/" +
           puuid +
-          "/match-history?api_key=" +
-          process.env.REACT_APP_API_KEY
+          "/match-history",
+          {
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Credentials": "true",
+              "Access-Control-Allow-Methods": "GET,OPTIONS",
+              "Access-Control-Allow-Headers": 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token, X-Riot-Token, Access-Control-Allow-Methods, Access-Control-Allow-Origin, Access-Control-Allow-Credentials, Access-Control-Allow-Headers',
+              "X-Riot-Token": process.env.REACT_APP_API_KEY
+            }
+          }
         )
           .then(result => {
 
@@ -219,9 +248,15 @@ class CurrentRankSlider extends Component {
       matchIds.map((matchId, index) =>
         fetch(
           "https://3agpr8hwd1.execute-api.us-east-2.amazonaws.com/" + process.env.REACT_APP_STAGE_NAME + "/played-champions/" +
-          matchId +
-          "?api_key=" +
-          process.env.REACT_APP_API_KEY
+          matchId, {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Credentials": "true",
+            "Access-Control-Allow-Methods": "GET,OPTIONS",
+            "Access-Control-Allow-Headers": 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token, X-Riot-Token, Access-Control-Allow-Methods, Access-Control-Allow-Origin, Access-Control-Allow-Credentials, Access-Control-Allow-Headers',
+            "X-Riot-Token": process.env.REACT_APP_API_KEY
+          }
+        }
         )
           .then(result => {
 

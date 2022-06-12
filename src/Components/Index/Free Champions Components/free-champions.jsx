@@ -35,7 +35,15 @@ class FreeChampions extends Component {
 
       Promise.all([
         fetch(
-          "https://3agpr8hwd1.execute-api.us-east-2.amazonaws.com/" + process.env.REACT_APP_STAGE_NAME + "/free-champions?api_key=" + process.env.REACT_APP_API_KEY,
+          "https://3agpr8hwd1.execute-api.us-east-2.amazonaws.com/" + process.env.REACT_APP_STAGE_NAME + "/free-champions?", {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Credentials": "true",
+            "Access-Control-Allow-Methods": "GET,OPTIONS",
+            "Access-Control-Allow-Headers": 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token, X-Riot-Token, Access-Control-Allow-Methods, Access-Control-Allow-Origin, Access-Control-Allow-Credentials, Access-Control-Allow-Headers',
+            "X-Riot-Token": process.env.REACT_APP_API_KEY
+          }
+        }
         ),
 
         fetch(
